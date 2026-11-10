@@ -3,207 +3,226 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TC24 | قسم الفريمات (SP9) - إدارة المبيعات</title>
+  <title>TC24 | قسم الفريمات (SP9)</title>
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root {
-      --bg-dark: #0b0f19;
-      --card-glass: rgba(17, 24, 39, 0.75);
-      --accent-amber: #f59e0b;
-      --accent-emerald: #10b981;
-      --accent-cyan: #06b6d4;
-      --accent-purple: #8b5cf6;
-      --text-light: #f3f4f6;
-      --text-muted: #9ca3af;
-      --border-glow: rgba(245, 158, 11, 0.25);
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --accent-gold: #f59e0b;
+      --accent-gold-hover: #d97706;
+      --accent-green: #10b981;
+      --accent-blue: #38bdf8;
+      --accent-purple: #a855f7;
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body { background-color: var(--bg-dark); color: var(--text-light); padding: 16px; min-height: 100vh; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    body { background: var(--bg-gradient); color: var(--text-main); padding: 20px; min-height: 100vh; line-height: 1.5; }
 
-    /* الهيدر الفخم */
-    .app-header {
-      background: linear-gradient(135deg, #1f2937, #111827);
+    /* الشريط الترحيبي العريض */
+    .hero-banner {
+      background: rgba(245, 158, 11, 0.1);
       border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 14px 20px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fbbf24;
+      font-weight: 700;
+      font-size: 1.1rem;
+      backdrop-filter: blur(10px);
+    }
+
+    /* الهيدر الفاخر */
+    .main-header {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       padding: 20px 24px;
-      border-radius: 18px;
+      border-radius: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      margin-bottom: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      backdrop-filter: blur(15px);
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 16px;
     }
-    .app-title { display: flex; align-items: center; gap: 12px; font-size: 1.4rem; font-weight: 800; color: var(--accent-amber); }
-    
-    .welcome-bar {
-      background: linear-gradient(90deg, rgba(245, 158, 11, 0.15), transparent);
-      border-right: 4px solid var(--accent-amber);
-      padding: 12px 18px;
+    .brand-title { display: flex; align-items: center; gap: 14px; font-size: 1.5rem; font-weight: 800; color: var(--accent-gold); }
+    .brand-title i { background: rgba(245, 158, 11, 0.2); padding: 12px; border-radius: 14px; border: 1px solid rgba(245, 158, 11, 0.4); }
+
+    .header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-top {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--accent-gold);
+      padding: 10px 18px;
       border-radius: 12px;
       font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-      color: #fcd34d;
-    }
-
-    .stats-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-    .stat-box {
-      background: var(--card-glass);
-      border: 1px solid rgba(255,255,255,0.07);
-      padding: 18px;
-      border-radius: 14px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    }
-    .stat-box.amber { border-top: 4px solid var(--accent-amber); }
-    .stat-box.emerald { border-top: 4px solid var(--accent-emerald); }
-    .stat-box.cyan { border-top: 4px solid var(--accent-cyan); }
-    .stat-box.purple { border-top: 4px solid var(--accent-purple); }
-    .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-bottom: 6px; }
-    .stat-number { font-size: 1.4rem; font-weight: 800; color: #fff; }
-
-    /* التبويبات الحديثة */
-    .nav-pills {
-      display: flex;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
       gap: 8px;
-      background: rgba(31, 41, 55, 0.6);
-      padding: 8px;
-      border-radius: 14px;
-      margin-bottom: 20px;
-      overflow-x: auto;
-      border: 1px solid rgba(255,255,255,0.05);
+      transition: all 0.3s;
     }
-    .pill-btn {
+    .btn-top:hover { background: rgba(245, 158, 11, 0.15); border-color: var(--accent-gold); }
+
+    /* التبويبات الفخمة */
+    .tabs-nav {
+      display: flex;
+      gap: 10px;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 8px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      border: 1px solid var(--card-border);
+      overflow-x: auto;
+    }
+    .tab-btn {
       flex: 1;
-      padding: 12px 16px;
+      padding: 14px 20px;
       border: none;
       background: transparent;
-      color: var(--text-muted);
+      color: var(--text-sub);
       font-weight: 700;
       font-size: 0.95rem;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       transition: all 0.3s;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
       white-space: nowrap;
     }
-    .pill-btn.active {
-      background: var(--accent-amber);
-      color: #0b0f19;
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-hover));
+      color: #0f172a;
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35);
     }
 
-    .tab-pane { display: none; }
-    .tab-pane.active { display: block; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
 
-    /* تخطيط الصفحة */
-    .dashboard-grid {
+    /* العدادات الإحصائية */
+    .metrics-grid {
       display: grid;
-      grid-template-columns: 1.2fr 2fr;
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
     }
-    @media (max-width: 950px) { .dashboard-grid { grid-template-columns: 1fr; } }
-
-    .panel-card {
-      background: var(--card-glass);
-      border: 1px solid rgba(255,255,255,0.07);
+    .metric-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 20px;
       border-radius: 16px;
-      padding: 22px;
+      border-right: 5px solid var(--accent-gold);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
       backdrop-filter: blur(10px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-      margin-bottom: 20px;
     }
-    .panel-card h3 {
-      font-size: 1.15rem;
-      color: var(--accent-amber);
-      margin-bottom: 16px;
+    .metric-card.green { border-right-color: var(--accent-green); }
+    .metric-card.blue { border-right-color: var(--accent-blue); }
+    .metric-card.purple { border-right-color: var(--accent-purple); }
+    .metric-title { font-size: 0.85rem; color: var(--text-sub); font-weight: 600; margin-bottom: 8px; }
+    .metric-val { font-size: 1.6rem; font-weight: 800; color: #fff; }
+
+    /* التخطيط العام */
+    .layout-split {
+      display: grid;
+      grid-template-columns: 1.1fr 1.9fr;
+      gap: 24px;
+    }
+    @media (max-width: 1000px) { .layout-split { grid-template-columns: 1fr; } }
+
+    .glass-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      margin-bottom: 24px;
+    }
+    .glass-card h3 {
+      font-size: 1.2rem;
+      color: var(--accent-gold);
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      padding-bottom: 10px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
       gap: 10px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
     }
-    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
 
-    .input-field-group { margin-bottom: 12px; }
-    .input-field-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; }
-    .custom-input {
+    /* مدخلات النموذج */
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 600px) { .form-grid-2 { grid-template-columns: 1fr; } }
+
+    .field-box { margin-bottom: 14px; }
+    .field-box label { display: block; font-size: 0.85rem; font-weight: 700; color: #e2e8f0; margin-bottom: 6px; }
+    .ui-input {
       width: 100%;
-      padding: 10px 12px;
-      background: rgba(11, 15, 25, 0.8);
-      border: 1px solid rgba(255,255,255,0.1);
+      padding: 12px 14px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--card-border);
       color: #fff;
-      border-radius: 10px;
-      font-size: 0.9rem;
+      border-radius: 12px;
+      font-size: 0.95rem;
       outline: none;
-      transition: border 0.2s;
+      transition: all 0.2s;
     }
-    .custom-input:focus { border-color: var(--accent-amber); box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15); }
-    .readonly-input { background: rgba(31, 41, 55, 0.5); color: #f59e0b; font-weight: bold; }
+    .ui-input:focus { border-color: var(--accent-gold); box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2); }
+    .ui-input.readonly { background: rgba(15, 23, 42, 0.9); color: var(--accent-gold); font-weight: 800; }
 
-    .main-btn {
+    .btn-submit {
       width: 100%;
-      padding: 12px;
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      color: #0b0f19;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-hover));
+      color: #0f172a;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       font-weight: 800;
       font-size: 1rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
       margin-top: 10px;
-      transition: opacity 0.2s;
+      transition: transform 0.2s;
     }
-    .main-btn:hover { opacity: 0.9; }
-    
-    .btn-secondary { background: rgba(255,255,255,0.05); color: var(--accent-amber); border: 1px solid rgba(245,158,11,0.3); padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
-    .btn-secondary:hover { background: rgba(245,158,11,0.1); }
+    .btn-submit:hover { transform: translateY(-2px); }
 
-    /* الجداول والأزرار الصغيرة */
-    .table-wrapper { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
-    th, td { padding: 10px 12px; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 0.85rem; }
-    th { background: rgba(31, 41, 55, 0.8); color: var(--accent-amber); font-weight: 700; }
+    /* الجداول والجداول المنسقة */
+    .table-container { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { padding: 14px 12px; text-align: right; border-bottom: 1px solid var(--card-border); font-size: 0.9rem; }
+    th { background: rgba(15, 23, 42, 0.8); color: var(--accent-gold); font-weight: 800; }
 
-    .action-group { display: flex; gap: 4px; }
-    .act-btn { border: none; padding: 5px 8px; border-radius: 6px; cursor: pointer; color: white; font-size: 0.8rem; font-weight: bold; }
-    .act-print { background: #059669; }
-    .act-wa { background: #16a34a; }
-    .act-edit { background: #d97706; }
-    .act-del { background: #dc2626; }
+    .btn-group { display: flex; gap: 6px; }
+    .btn-act { border: none; padding: 6px 10px; border-radius: 8px; cursor: pointer; color: white; font-size: 0.85rem; font-weight: bold; }
+    .btn-act.print { background: var(--accent-green); }
+    .btn-act.wa { background: #25d366; }
+    .btn-act.edit { background: var(--accent-gold-hover); }
+    .btn-act.del { background: #ef4444; }
 
-    .status-badge { padding: 3px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: bold; }
-    .st-paid { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .badge-status { padding: 4px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: bold; }
+    .st-ok { background: rgba(16, 185, 129, 0.2); color: #34d399; }
     .st-part { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-    .st-unpaid { background: rgba(220, 38, 38, 0.2); color: #f87171; }
+    .st-zero { background: rgba(239, 68, 68, 0.2); color: #f87171; }
 
     @media print {
       body { background: white !important; color: black !important; padding: 0; }
-      .app-header, .welcome-bar, .nav-pills, .dashboard-grid > div:first-child, .no-print, .action-group { display: none !important; }
-      .panel-card { border: none; box-shadow: none; background: white !important; color: black !important; }
+      .main-header, .hero-banner, .tabs-nav, .layout-split > div:first-child, .no-print, .btn-group { display: none !important; }
+      .glass-card { border: none; box-shadow: none; background: white !important; color: black !important; }
       th, td { border: 1px solid #ccc; color: black !important; }
       th { background: #eee !important; }
     }
@@ -211,152 +230,154 @@
 </head>
 <body>
 
-  <!-- الترويسة والترحيب -->
-  <div class="welcome-bar">
-    <i class="fa-solid fa-hand"></i> أهلاً وسهلاً 🤚 | تحت إشراف: مهندس عمر
+  <!-- شريط الترحيب -->
+  <div class="hero-banner">
+    <i class="fa-solid fa-hand-wave"></i> أهلاً وسهلاً بك ✋ | التوثيق والتعميد الفني تحت إشراف: مهندس عمر
   </div>
 
-  <div class="app-header">
-    <div class="app-title">
-      <i class="fa-solid fa-layer-group"></i> شركة تكنيكال 24 (TC24) - قسم الفريمات (SP9)
+  <!-- الهيدر الرئيسى -->
+  <div class="main-header">
+    <div class="brand-title">
+      <i class="fa-solid fa-shapes"></i>
+      <div>
+        <div>شركة تكنيكال 24 (TC24)</div>
+        <div style="font-size: 0.85rem; color: var(--text-sub); font-weight: 600;">قسم الفريمات والتركيبات (SP9)</div>
+      </div>
     </div>
-    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-      <button class="btn-secondary" onclick="exportToExcel()"><i class="fa-solid fa-file-excel"></i> تصدير Excel</button>
-      <label class="btn-secondary" style="margin:0; cursor:pointer;"><i class="fa-solid fa-file-import"></i> استيراد Excel/JSON <input type="file" accept=".json,.csv" style="display:none;" onchange="importData(event)"></label>
-      <button class="btn-secondary" onclick="window.print()"><i class="fa-solid fa-print"></i> طباعة الحصر</button>
+    <div class="header-actions">
+      <button class="btn-top" onclick="exportToExcel()"><i class="fa-solid fa-file-excel"></i> تصدير Excel</button>
+      <label class="btn-top" style="margin:0; cursor:pointer;"><i class="fa-solid fa-file-import"></i> استيراد <input type="file" accept=".json,.csv" style="display:none;" onchange="importData(event)"></label>
+      <button class="btn-top" onclick="window.print()"><i class="fa-solid fa-print"></i> طباعة الحصر</button>
     </div>
   </div>
 
-  <!-- شريط التبويبات الرئيسي -->
-  <div class="nav-pills">
-    <button class="pill-btn active" onclick="switchTab('tab-sales', this)"><i class="fa-solid fa-cash-register"></i> تسجيل المبيعات والعمليات</button>
-    <button class="pill-btn" onclick="switchTab('tab-search', this)"><i class="fa-solid fa-magnifying-glass"></i> البحث السريع المتقدم</button>
-    <button class="pill-btn" onclick="switchTab('tab-monthly', this)"><i class="fa-solid fa-calendar-days"></i> الحصر والطباعة المخصصة</button>
-    <button class="pill-btn" onclick="switchTab('tab-analytics', this)"><i class="fa-solid fa-chart-line"></i> التحليل والمقارنة المهارية</button>
-    <button class="pill-btn" onclick="switchTab('tab-settings', this)"><i class="fa-solid fa-users-gear"></i> إدارة الموظفين والإعدادات</button>
+  <!-- شريط التبويبات -->
+  <div class="tabs-nav">
+    <button class="tab-btn active" onclick="switchTab('tab-sales', this)"><i class="fa-solid fa-cash-register"></i> إدارة المبيعات</button>
+    <button class="tab-btn" onclick="switchTab('tab-search', this)"><i class="fa-solid fa-magnifying-glass"></i> البحث المتقدم</button>
+    <button class="tab-btn" onclick="switchTab('tab-monthly', this)"><i class="fa-solid fa-calendar-days"></i> الحصر والتقارير</button>
+    <button class="tab-btn" onclick="switchTab('tab-analytics', this)"><i class="fa-solid fa-chart-column"></i> التحليل والرسم البياني</button>
+    <button class="tab-btn" onclick="switchTab('tab-settings', this)"><i class="fa-solid fa-users-gear"></i> إدارة الموظفين</button>
   </div>
 
-  <!-- التبويب 1: المبيعات وتسجيل العمليات -->
-  <div id="tab-sales" class="tab-pane active">
-    <div class="stats-container">
-      <div class="stat-box amber">
-        <div class="stat-label">مبيعات اليوم (عدد)</div>
-        <div class="stat-number" id="stat-day-count">0</div>
+  <!-- T1: تسجيل المبيعات -->
+  <div id="tab-sales" class="tab-content active">
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-title">مبيعات اليوم (عمليات)</div>
+        <div class="metric-val" id="stat-day-count">0</div>
       </div>
-      <div class="stat-box emerald">
-        <div class="stat-label">تحصيل اليوم الإجمالي</div>
-        <div class="stat-number" id="stat-day-cash">0 ر.س</div>
+      <div class="metric-card green">
+        <div class="metric-title">تحصيل اليوم الإجمالي</div>
+        <div class="metric-val" id="stat-day-cash">0 ر.س</div>
       </div>
-      <div class="stat-box cyan">
-        <div class="stat-label">تحصيل الشهر الحالي</div>
-        <div class="stat-number" id="stat-month-cash">0 ر.س</div>
+      <div class="metric-card blue">
+        <div class="metric-title">تحصيل الشهر الحالي</div>
+        <div class="metric-val" id="stat-month-cash">0 ر.س</div>
       </div>
-      <div class="stat-box purple">
-        <div class="stat-label">إجمالي العملاء المسجلين</div>
-        <div class="stat-number" id="stat-total-clients">0</div>
+      <div class="metric-card purple">
+        <div class="metric-title">إجمالي العملاء المسجلين</div>
+        <div class="metric-val" id="stat-total-clients">0</div>
       </div>
     </div>
 
-    <div class="dashboard-grid">
-      <!-- نموذج إضافة عمليّة -->
-      <div class="panel-card">
+    <div class="layout-split">
+      <!-- النموذج -->
+      <div class="glass-card">
         <h3 id="formTitle"><i class="fa-solid fa-user-plus"></i> تسجيل عملية فريمات جديدة</h3>
         <form id="sp9Form">
           <input type="hidden" id="editIdx" value="-1">
           
-          <div class="form-row">
-            <div class="input-field-group">
+          <div class="form-grid-2">
+            <div class="field-box">
               <label>كود العميل</label>
-              <input type="text" id="cCode" class="custom-input" required placeholder="مثال: SP9-101">
+              <input type="text" id="cCode" class="ui-input" required placeholder="مثال: SP9-101">
             </div>
-            <div class="input-field-group">
+            <div class="field-box">
               <label>تاريخ العملية</label>
-              <input type="date" id="cDate" class="custom-input" required>
+              <input type="date" id="cDate" class="ui-input" required>
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="input-field-group">
+          <div class="form-grid-2">
+            <div class="field-box">
               <label>اسم العميل</label>
-              <input type="text" id="cName" class="custom-input" required placeholder="اسم العميل">
+              <input type="text" id="cName" class="ui-input" required placeholder="اسم العميل الكامل">
             </div>
-            <div class="input-field-group">
+            <div class="field-box">
               <label>رقم الجوال</label>
-              <input type="tel" id="cPhone" class="custom-input" required placeholder="05xxxxxxxx">
+              <input type="tel" id="cPhone" class="ui-input" required placeholder="05xxxxxxxx">
             </div>
           </div>
 
-          <!-- فريم شبك -->
-          <div class="form-row">
-            <div class="input-field-group">
+          <div class="form-grid-2">
+            <div class="field-box">
               <label>عدد فريم شبك</label>
-              <input type="number" id="netQty" class="custom-input" min="0" value="0" oninput="calcTotals()">
+              <input type="number" id="netQty" class="ui-input" min="0" value="0" oninput="calcTotals()">
             </div>
-            <div class="input-field-group">
-              <label>سعر الفريم الشبك (ر.س)</label>
-              <input type="number" id="netPrice" class="custom-input" min="0" value="0" oninput="calcTotals()">
+            <div class="field-box">
+              <label>سعر فريم الشبك (ر.س)</label>
+              <input type="number" id="netPrice" class="ui-input" min="0" value="0" oninput="calcTotals()">
             </div>
           </div>
 
-          <!-- فريم بلاك اوت -->
-          <div class="form-row">
-            <div class="input-field-group">
+          <div class="form-grid-2">
+            <div class="field-box">
               <label>عدد فريم بلاك أوت</label>
-              <input type="number" id="boQty" class="custom-input" min="0" value="0" oninput="calcTotals()">
+              <input type="number" id="boQty" class="ui-input" min="0" value="0" oninput="calcTotals()">
             </div>
-            <div class="input-field-group">
+            <div class="field-box">
               <label>سعر الفريم البلاك أوت (ر.س)</label>
-              <input type="number" id="boPrice" class="custom-input" min="0" value="0" oninput="calcTotals()">
+              <input type="number" id="boPrice" class="ui-input" min="0" value="0" oninput="calcTotals()">
             </div>
           </div>
 
-          <!-- الحساب التلقائي والتفاصيل المالية -->
-          <div class="input-field-group">
+          <div class="field-box">
             <label>إجمالي المبلغ (Total)</label>
-            <input type="number" id="totalCost" class="custom-input readonly-input" readonly value="0">
+            <input type="number" id="totalCost" class="ui-input readonly" readonly value="0">
           </div>
 
-          <div class="form-row">
-            <div class="input-field-group">
+          <div class="form-grid-2">
+            <div class="field-box">
               <label>طريقة التحصيل</label>
-              <select id="payMethod" class="custom-input">
-                <option value="كاش / نقدي" style="background:#111827;">كاش / نقدي</option>
-                <option value="شبكة" style="background:#111827;">شبكة</option>
-                <option value="تحويل بنكي" style="background:#111827;">تحويل بنكي</option>
+              <select id="payMethod" class="ui-input">
+                <option value="كاش / نقدي" style="background:#0f172a;">كاش / نقدي</option>
+                <option value="شبكة" style="background:#0f172a;">شبكة</option>
+                <option value="تحويل بنكي" style="background:#0f172a;">تحويل بنكي</option>
               </select>
             </div>
-            <div class="input-field-group">
+            <div class="field-box">
               <label>الدفعة الأولى</label>
-              <input type="number" id="firstPay" class="custom-input" min="0" value="0" oninput="calcTotals()">
+              <input type="number" id="firstPay" class="ui-input" min="0" value="0" oninput="calcTotals()">
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="input-field-group">
+          <div class="form-grid-2">
+            <div class="field-box">
               <label>الدفعة الأخيرة</label>
-              <input type="number" id="lastPay" class="custom-input" min="0" value="0" oninput="calcTotals()">
+              <input type="number" id="lastPay" class="ui-input" min="0" value="0" oninput="calcTotals()">
             </div>
-            <div class="input-field-group">
+            <div class="field-box">
               <label>المبلغ المتبقي</label>
-              <input type="number" id="remainPay" class="custom-input readonly-input" readonly value="0">
+              <input type="number" id="remainPay" class="ui-input readonly" readonly value="0">
             </div>
           </div>
 
-          <button type="submit" class="main-btn" id="submitBtn"><i class="fa-solid fa-floppy-disk"></i> حفظ وترتيب العملية</button>
+          <button type="submit" class="btn-submit" id="submitBtn"><i class="fa-solid fa-floppy-disk"></i> حفظ وترتيب العملية</button>
         </form>
       </div>
 
-      <!-- جدول العملاء والعمليات -->
-      <div class="panel-card">
-        <h3><i class="fa-solid fa-list-check"></i> سجل عملاء قسم الفريمات (SP9)</h3>
-        <div class="table-wrapper">
+      <!-- الجدول -->
+      <div class="glass-card">
+        <h3><i class="fa-solid fa-table-list"></i> سجل عملاء الفريمات (SP9)</h3>
+        <div class="table-container">
           <table>
             <thead>
               <tr>
                 <th>الكود</th>
                 <th>التاريخ</th>
                 <th>العميل والجوال</th>
-                <th>كميات الفريم</th>
+                <th>الكميات</th>
                 <th>الإجمالي / المدفوع</th>
                 <th>المتبقي</th>
                 <th class="no-print">إجراءات</th>
@@ -369,26 +390,26 @@
     </div>
   </div>
 
-  <!-- التبويب 2: البحث المتقدم -->
-  <div id="tab-search" class="tab-pane">
-    <div class="panel-card">
-      <h3><i class="fa-solid fa-magnifying-glass"></i> البحث السريع المريح في السجلات</h3>
-      <div style="margin-bottom: 16px;">
-        <input type="text" id="searchInput" class="custom-input" placeholder="ابحث باسم العميل، كود العميل، أو رقم الجوال..." oninput="filterSearchTable()">
+  <!-- T2: البحث المتقدم -->
+  <div id="tab-search" class="tab-content">
+    <div class="glass-card">
+      <h3><i class="fa-solid fa-magnifying-glass"></i> البحث السريع المريح</h3>
+      <div style="margin-bottom: 20px;">
+        <input type="text" id="searchInput" class="ui-input" placeholder="ابحث باسم العميل، الكود، أو الجوال..." oninput="filterSearchTable()">
       </div>
-      <div class="table-wrapper">
+      <div class="table-container">
         <table>
           <thead>
             <tr>
               <th>الكود</th>
-              <th>اسم العميل</th>
-              <th>رقم الجوال</th>
+              <th>العميل</th>
+              <th>الجوال</th>
               <th>التاريخ</th>
-              <th>فريم شبك</th>
-              <th>فريم بلاك أوت</th>
-              <th>إجمالي المبلغ</th>
+              <th>شبك</th>
+              <th>بلاك أوت</th>
+              <th>الإجمالي</th>
               <th>المتبقي</th>
-              <th class="no-print">مراسلة الواتساب</th>
+              <th class="no-print">الواتساب</th>
             </tr>
           </thead>
           <tbody id="searchTableBody"></tbody>
@@ -397,95 +418,87 @@
     </div>
   </div>
 
-  <!-- التبويب 3: الحصر والطباعة المخصصة -->
-  <div id="tab-monthly" class="tab-pane">
-    <div class="panel-card">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
-        <h3><i class="fa-solid fa-print"></i> حصر وطباعة المبيعات بالفترة المخصصة</h3>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-          <select id="filterPeriod" class="custom-input" style="width:auto;" onchange="renderPeriodReport()">
-            <option value="week" style="background:#111827;">أسبوع حالي</option>
-            <option value="month1" selected style="background:#111827;">شهر واحد</option>
-            <option value="month2" style="background:#111827;">شهرين (2 أشهر)</option>
-            <option value="month3" style="background:#111827;">ثلاثة أشهر (3 أشهر)</option>
-            <option value="all" style="background:#111827;">جميع البيانات المسجلة</option>
+  <!-- T3: الحصر والطباعة -->
+  <div id="tab-monthly" class="tab-content">
+    <div class="glass-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+        <h3><i class="fa-solid fa-print"></i> حصر المبيعات والطباعة المخصصة</h3>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <select id="filterPeriod" class="ui-input" style="width:auto;" onchange="renderPeriodReport()">
+            <option value="week" style="background:#0f172a;">أسبوع حالي</option>
+            <option value="month1" selected style="background:#0f172a;">شهر واحد</option>
+            <option value="month2" style="background:#0f172a;">شهرين (2 أشهر)</option>
+            <option value="month3" style="background:#0f172a;">ثلاثة أشهر (3 أشهر)</option>
+            <option value="all" style="background:#0f172a;">جميع البيانات</option>
           </select>
-          <button class="btn-secondary no-print" onclick="window.print()"><i class="fa-solid fa-print"></i> طباعة ملونة بالتحليل</button>
+          <button class="btn-top no-print" onclick="window.print()"><i class="fa-solid fa-print"></i> طباعة ملونة</button>
         </div>
       </div>
 
-      <div id="printArea">
-        <div style="text-align: center; margin-bottom: 20px; border-bottom: 2px solid var(--accent-amber); padding-bottom: 10px;">
-          <h2 style="color: var(--accent-amber);">شركة تكنيكال 24 (TC24) - قسم الفريمات (SP9)</h2>
-          <p style="color: var(--text-muted);">تقرير وحصر مبيعات العملاء وتعميدات الفريمات</p>
-        </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>الكود</th>
+              <th>التاريخ</th>
+              <th>العميل</th>
+              <th>الجوال</th>
+              <th>شبك</th>
+              <th>بلاك أوت</th>
+              <th>الدفع</th>
+              <th>الإجمالي</th>
+              <th>المدفوع</th>
+              <th>المتبقي</th>
+            </tr>
+          </thead>
+          <tbody id="periodTableBody"></tbody>
+        </table>
+      </div>
 
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>كود العميل</th>
-                <th>التاريخ</th>
-                <th>اسم العميل</th>
-                <th>الجوال</th>
-                <th>شبك</th>
-                <th>بلاك أوت</th>
-                <th>طريقة الدفع</th>
-                <th>الإجمالي (Total)</th>
-                <th>المدفوع</th>
-                <th>المتبقي</th>
-              </tr>
-            </thead>
-            <tbody id="periodTableBody"></tbody>
-          </table>
-        </div>
+      <div style="margin-top: 24px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); padding: 18px; border-radius: 14px; display: flex; justify-content: space-between; font-weight: bold; color: var(--accent-gold); font-size: 1.1rem; flex-wrap: wrap; gap: 12px;">
+        <div>إجمالي المبيعات: <span id="periodTotalSum">0</span> ر.س</div>
+        <div>إجمالي المحصل: <span id="periodPaidSum">0</span> ر.س</div>
+        <div>إجمالي المتبقي: <span id="periodRemainSum">0</span> ر.س</div>
+      </div>
 
-        <div style="margin-top: 20px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; font-weight: bold; color: var(--accent-amber); font-size: 1.1rem; flex-wrap: wrap; gap: 10px;">
-          <div>إجمالي مبيعات الفترة: <span id="periodTotalSum">0</span> ر.س</div>
-          <div>إجمالي المحصل: <span id="periodPaidSum">0</span> ر.س</div>
-          <div>إجمالي المتبقي: <span id="periodRemainSum">0</span> ر.س</div>
-        </div>
-
-        <div style="margin-top: 40px; border-top: 2px solid var(--accent-amber); padding-top: 15px; display: flex; justify-content: space-between; font-weight: bold; color: var(--accent-amber);">
-          <div>تاريخ الطباعة: <span id="printDateStamp"></span></div>
-          <div>إشراف مهندس عمر</div>
-          <div>قسم الفريمات SP9</div>
-        </div>
+      <div style="margin-top: 40px; border-top: 2px solid var(--accent-gold); padding-top: 15px; display: flex; justify-content: space-between; font-weight: bold; color: var(--accent-gold);">
+        <div>تاريخ الطباعة: <span id="printDateStamp"></span></div>
+        <div>إشراف مهندس عمر</div>
+        <div>قسم الفريمات SP9</div>
       </div>
     </div>
   </div>
 
-  <!-- التبويب 4: التحليل والرسم البياني -->
-  <div id="tab-analytics" class="tab-pane">
-    <div class="panel-card">
-      <h3><i class="fa-solid fa-chart-column"></i> رسم بياني ومقارنة مبيعات الشهور</h3>
-      <div style="position: relative; height:350px; width:100%;">
+  <!-- T4: التحليل -->
+  <div id="tab-analytics" class="tab-content">
+    <div class="glass-card">
+      <h3><i class="fa-solid fa-chart-column"></i> مقارنة الشهور والمبيعات</h3>
+      <div style="position: relative; height:360px; width:100%;">
         <canvas id="salesChart"></canvas>
       </div>
     </div>
   </div>
 
-  <!-- التبويب 5: إعدادات الموظفين والنسخ الاحتياطي -->
-  <div id="tab-settings" class="tab-pane">
-    <div class="dashboard-grid">
-      <div class="panel-card">
-        <h3><i class="fa-solid fa-user-gear"></i> إضافة وإدارة الموظفين</h3>
+  <!-- T5: الموظفين -->
+  <div id="tab-settings" class="tab-content">
+    <div class="layout-split">
+      <div class="glass-card">
+        <h3><i class="fa-solid fa-user-gear"></i> إضافة موظف</h3>
         <form id="empForm">
-          <div class="input-field-group">
+          <div class="field-box">
             <label>اسم الموظف</label>
-            <input type="text" id="empName" class="custom-input" required placeholder="اسم الموظف">
+            <input type="text" id="empName" class="ui-input" required placeholder="الاسم الكريم">
           </div>
-          <div class="input-field-group">
-            <label>المسمى الوظيفي / المسموح له</label>
-            <input type="text" id="empRole" class="custom-input" required placeholder="مثال: فني تركيبات / مبيعات">
+          <div class="field-box">
+            <label>المسمى الوظيفي</label>
+            <input type="text" id="empRole" class="ui-input" required placeholder="مثال: فني تركيبات">
           </div>
-          <button type="submit" class="main-btn"><i class="fa-solid fa-plus"></i> إضافة موظف</button>
+          <button type="submit" class="btn-submit"><i class="fa-solid fa-plus"></i> إضافة للسجل</button>
         </form>
       </div>
-
-      <div class="panel-card">
-        <h3><i class="fa-solid fa-users-viewfinder"></i> قائمة الموظفين المسجلين</h3>
-        <div class="table-wrapper">
+      <div class="glass-card">
+        <h3><i class="fa-solid fa-users"></i> قائمة الموظفين</h3>
+        <div class="table-container">
           <table>
             <thead>
               <tr>
@@ -502,19 +515,16 @@
   </div>
 
   <script>
-    // قاعدة البيانات المسجلة
     let salesData = JSON.parse(localStorage.getItem('tc24_sp9_sales')) || [];
-    let empData = JSON.parse(localStorage.getItem('tc24_sp9_emps')) || [
-      { name: 'مهندس عمر', role: 'مشرف قسم الفريمات SP9' }
-    ];
+    let empData = JSON.parse(localStorage.getItem('tc24_sp9_emps')) || [{ name: 'مهندس عمر', role: 'مشرف قسم الفريمات SP9' }];
     let chartInstance = null;
 
     document.getElementById('cDate').valueAsDate = new Date();
     document.getElementById('printDateStamp').innerText = new Date().toLocaleDateString('ar-SA');
 
     function switchTab(tabId, btn) {
-      document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById(tabId).classList.add('active');
 
@@ -549,13 +559,8 @@
 
       salesData.forEach(item => {
         const itemPaid = Number(item.firstPay || 0) + Number(item.lastPay || 0);
-        if (item.date === today) {
-          dayCount++;
-          dayCash += itemPaid;
-        }
-        if (item.date && item.date.startsWith(currMonth)) {
-          monthCash += itemPaid;
-        }
+        if (item.date === today) { dayCount++; dayCash += itemPaid; }
+        if (item.date && item.date.startsWith(currMonth)) { monthCash += itemPaid; }
       });
 
       document.getElementById('stat-day-count').innerText = dayCount;
@@ -572,24 +577,24 @@
         const paidTotal = Number(item.firstPay || 0) + Number(item.lastPay || 0);
         const remain = Number(item.totalCost || 0) - paidTotal;
         
-        let statusBadge = '<span class="status-badge st-paid">خالص</span>';
-        if (remain > 0 && paidTotal > 0) statusBadge = '<span class="status-badge st-part">متبقي دفعة</span>';
-        else if (remain > 0 && paidTotal === 0) statusBadge = '<span class="status-badge st-unpaid">غير مدفوع</span>';
+        let statusBadge = '<span class="badge-status st-ok">خالص</span>';
+        if (remain > 0 && paidTotal > 0) statusBadge = '<span class="badge-status st-part">متبقي دفعة</span>';
+        else if (remain > 0 && paidTotal === 0) statusBadge = '<span class="badge-status st-zero">غير مدفوع</span>';
 
         tbody.innerHTML += `
           <tr>
-            <td><strong style="color:var(--accent-amber);">${item.code}</strong></td>
+            <td><strong style="color:var(--accent-gold);">${item.code}</strong></td>
             <td>${item.date}</td>
-            <td><strong>${item.name}</strong><br><small style="color:var(--text-muted);">${item.phone}</small></td>
+            <td><strong>${item.name}</strong><br><small style="color:var(--text-sub);">${item.phone}</small></td>
             <td>شبك: ${item.netQty} | بلاك أوت: ${item.boQty}</td>
             <td><strong>${Number(item.totalCost).toLocaleString()} ر.س</strong><br><small style="color:#34d399;">مدفوع: ${paidTotal.toLocaleString()}</small></td>
             <td><strong style="color:${remain > 0 ? '#f87171' : '#34d399'};">${remain.toLocaleString()} ر.س</strong><br>${statusBadge}</td>
             <td class="no-print">
-              <div class="action-group">
-                <button class="act-btn act-print" onclick="printSingleInvoice(${index})" title="طباعة فاتورة"><i class="fa-solid fa-print"></i></button>
-                <button class="act-btn act-wa" onclick="sendWhatsappMsg(${index})" title="واتساب"><i class="fa-brands fa-whatsapp"></i></button>
-                <button class="act-btn act-edit" onclick="editSaleItem(${index})" title="تعديل"><i class="fa-solid fa-pen"></i></button>
-                <button class="act-btn act-del" onclick="deleteSaleItem(${index})" title="حذف"><i class="fa-solid fa-trash"></i></button>
+              <div class="btn-group">
+                <button class="btn-act print" onclick="printSingleInvoice(${index})" title="طباعة"><i class="fa-solid fa-print"></i></button>
+                <button class="btn-act wa" onclick="sendWhatsappMsg(${index})" title="واتساب"><i class="fa-brands fa-whatsapp"></i></button>
+                <button class="btn-act edit" onclick="editSaleItem(${index})" title="تعديل"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn-act del" onclick="deleteSaleItem(${index})" title="حذف"><i class="fa-solid fa-trash"></i></button>
               </div>
             </td>
           </tr>
@@ -602,7 +607,6 @@
 
     document.getElementById('sp9Form').onsubmit = (e) => {
       e.preventDefault();
-
       const editIdx = parseInt(document.getElementById('editIdx').value);
       const dataObj = {
         code: document.getElementById('cCode').value,
@@ -652,7 +656,7 @@
       document.getElementById('editIdx').value = idx;
       document.getElementById('submitBtn').innerHTML = '<i class="fa-solid fa-check-double"></i> تحديث بيانات العملية';
       document.getElementById('formTitle').innerHTML = '<i class="fa-solid fa-user-pen"></i> تعديل عملية العميل';
-      switchTab('tab-sales', document.querySelectorAll('.pill-btn')[0]);
+      switchTab('tab-sales', document.querySelectorAll('.tab-btn')[0]);
     }
 
     function deleteSaleItem(idx) {
@@ -675,9 +679,7 @@
 
     function filterSearchTable() {
       const q = document.getElementById('searchInput').value.toLowerCase();
-      const filtered = salesData.filter(i => 
-        i.name.toLowerCase().includes(q) || i.code.toLowerCase().includes(q) || (i.phone && i.phone.includes(q))
-      );
+      const filtered = salesData.filter(i => i.name.toLowerCase().includes(q) || i.code.toLowerCase().includes(q) || (i.phone && i.phone.includes(q)));
 
       const tbody = document.getElementById('searchTableBody');
       tbody.innerHTML = '';
@@ -696,7 +698,7 @@
             <td>${item.totalCost.toLocaleString()} ر.س</td>
             <td><strong style="color:${remain > 0 ? '#f87171' : '#34d399'};">${remain.toLocaleString()} ر.س</strong></td>
             <td>
-              <button class="act-btn act-wa" onclick="sendWhatsappMsg(${idx})"><i class="fa-brands fa-whatsapp"></i> واتساب</button>
+              <button class="btn-act wa" onclick="sendWhatsappMsg(${idx})"><i class="fa-brands fa-whatsapp"></i> واتساب</button>
             </td>
           </tr>
         `;
@@ -727,9 +729,7 @@
         } else if (period === 'month3') {
           const diffDays = (now - itemDate) / (1000 * 60 * 60 * 24);
           if (diffDays <= 90 && diffDays >= 0) include = true;
-        } else {
-          include = true;
-        }
+        } else { include = true; }
 
         if (include) {
           const paidTotal = Number(item.firstPay || 0) + Number(item.lastPay || 0);
@@ -793,12 +793,10 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: {
-            legend: { labels: { color: '#f3f4f6' } }
-          },
+          plugins: { legend: { labels: { color: '#f8fafc' } } },
           scales: {
-            x: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.05)' } },
-            y: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+            x: { ticks: { color: '#94a3af' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+            y: { ticks: { color: '#94a3af' }, grid: { color: 'rgba(255,255,255,0.05)' } }
           }
         }
       });
@@ -823,7 +821,7 @@
           <tr>
             <td><strong>${emp.name}</strong></td>
             <td>${emp.role}</td>
-            <td><button class="act-btn act-del" onclick="deleteEmp(${index})"><i class="fa-solid fa-trash"></i> حذف</button></td>
+            <td><button class="btn-act del" onclick="deleteEmp(${index})"><i class="fa-solid fa-trash"></i> حذف</button></td>
           </tr>
         `;
       });
