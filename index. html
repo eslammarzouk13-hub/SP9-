@@ -80,7 +80,7 @@ cmp.innerHTML=Object.keys(m).sort().map(k=>'<div class="bar" style="width:'+Math
 function excel(){if(!data.length){alert('لا يوجد بيانات');return}let csv='\ufeffالكود,العميل,الجوال,التاريخ,شبك,سعر الشبك,بلاك اوت,سعر البلاك,الاجمالي,المدفوع,المتبقي\n';
 data.forEach(s=>csv+='"'+s.c+'","'+s.n+'","'+s.p+'","'+s.d+'","'+s.q1+'","'+s.s1+'","'+s.q2+'","'+s.s2+'","'+s.total+'","'+s.paid+'","'+s.rem+'"\n');
 let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='SP9.csv';a.click()}
-function backup(){let a=document.createElement('a');a.href='data:text/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(data));a.download='TC24-SP9.json';a.click()}
+function backup(){let a=document.createElement('a');a.href='data:text/json;charset=utf-8,[STRIPPED]
 function restore(e){let r=new FileReader();r.onload=()=>{try{data=JSON.parse(r.result);localStorage.setItem('tc24sp9',JSON.stringify(data));show();monthly();alert('تمت الاستعادة ✅')}catch(_){alert('ملف غير صالح')}};r.readAsText(e.target.files[0])}
 calc();show();monthly();
 </script></body></html>
