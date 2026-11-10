@@ -15,7 +15,7 @@
       --card-border: rgba(160, 118, 84, 0.22);
       --accent-gold: #7d5430;
       --accent-gold-hover: #5d3e22;
-      --accent-green: #2563eb; /* تم تحديث لون الهوية الاحترافي */
+      --accent-green: #2563eb;
       --accent-blue: #0284c7;
       --accent-purple: #7c3aed;
       --text-main: #2d1e18;
@@ -25,6 +25,25 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
     body { background: var(--bg-gradient); color: var(--text-main); padding: 24px; min-height: 100vh; line-height: 1.6; }
+
+    /* الشريط المتحرك الاحترافي */
+    .pro-ticker {
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-hover));
+      color: #fff;
+      padding: 10px 0;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(125, 84, 48, 0.2);
+      overflow: hidden;
+      white-space: nowrap;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .pro-ticker marquee {
+      width: 100%;
+    }
 
     /* الشريط الترحيبي الاحترافي */
     .hero-banner {
@@ -234,7 +253,7 @@
 
     @media print {
       body { background: white !important; color: black !important; padding: 0; }
-      .main-header, .hero-banner, .tabs-nav, .layout-split > div:first-child, .no-print, .btn-group { display: none !important; }
+      .main-header, .hero-banner, .pro-ticker, .tabs-nav, .layout-split > div:first-child, .no-print, .btn-group { display: none !important; }
       .glass-card { border: none; box-shadow: none; background: white !important; color: black !important; padding: 0 !important; }
       th, td { border: 1px solid #ccc; color: black !important; }
       th { background: #f2f2f2 !important; }
@@ -242,6 +261,13 @@
   </style>
 </head>
 <body>
+
+  <!-- الشريط المتحرك الاحترافي الجديد -->
+  <div class="pro-ticker">
+    <marquee behavior="scroll" direction="right" scrollamount="5">
+      ✨ شركة تكنيكال 24 &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; الراحة والجودة عنواننا دائمًا ✨ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🚀 نرحب بكم في لوحة تحكم قسم الفريمات والتركيبات (SP9) تحت إشراف مهندس عمر 🚀
+    </marquee>
+  </div>
 
   <!-- شريط الترحيب -->
   <div class="hero-banner">
@@ -894,6 +920,7 @@
         .tot{background:#f0e6d6;padding:12px;text-align:center;font-size:1.2rem;font-weight:bold;color:#7d5430;margin-top:20px;border-radius:8px;}
         .sign{margin-top:40px;border-top:2px solid #7d5430;padding-top:15px;display:flex;justify-content:space-between;font-weight:bold;color:#7d5430;}</style></head>
         <body><div class="box"><div class="h"><h2>شركة تكنيكال 24 (TC24)</h2><p>قسم الفريمات (SP9) - إيصال تعميد مبيعات</p></div>
+        .r` + /* بقية بيانات الفاتورة */ `
         <div class="r"><span>كود العميل:</span><strong>${item.code}</strong></div>
         <div class="r"><span>تاريخ العملية:</span><strong>${item.date}</strong></div>
         <div class="r"><span>اسم العميل:</span><strong>${item.name}</strong></div>
