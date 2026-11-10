@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TC24 | SP9</title>
+<style>
+*{box-sizing:border-box;font-family:Tahoma,sans-serif}body{background:#f8fafc;margin:0;padding:16px;color:#1e293b}
+header{background:#78350f;color:#fff;padding:20px;border-radius:16px;text-align:center}
+header b{font-size:32px}header p{color:#fde68a;margin:4px 0 0;font-weight:700}
+.welcome{background:#fef3c7;border:1px solid #fcd34d;color:#78350f;padding:12px;border-radius:12px;margin:14px 0;font-weight:800;text-align:center}
+.tabs{display:flex;gap:8px;overflow:auto;margin-bottom:14px}.tabs button{flex:1;white-space:nowrap;padding:11px;border:1px solid #e2e8f0;background:#fff;border-radius:12px;font-weight:800;cursor:pointer}
+.tabs button.on{background:#78350f;color:#fff}
+.page{display:none}.page.on{display:block}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:18px;margin-bottom:14px}
+label{display:block;font-weight:800;font-size:14px;margin:10px 0 4px}
+input,select{width:100%;padding:11px;border:1px solid #e2e8f0;border-radius:10px;font-size:15px}
+button.main{width:100%;padding:13px;background:#78350f;color:#fff;border:0;border-radius:12px;font-weight:900;font-size:16px;margin-top:14px;cursor:pointer}
+.box{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:12px;font-weight:900;color:#78350f;margin-top:12px}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{border-bottom:1px solid #eee;padding:9px;text-align:right}th{background:#fef3c7;color:#78350f}
+.bar{height:26px;background:#78350f;color:#fff;border-radius:8px;padding:4px 8px;margin:7px 0;font-weight:800;font-size:13px;white-space:nowrap}
+.small{font-size:12px;color:#64748b}.del{background:#dc2626;color:#fff;border:0;border-radius:8px;padding:7px 10px;cursor:pointer}
+@media print{.tabs,.form,.no-print{display:none!important}header{background:#fff!important;color:#78350f}}
+</style></head><body>
+<header><b>TC24</b><p>قسم SP9 للفريمات</p></header>
+<div class="welcome">أهلاً وسهلاً 🤚</div>
+<div class="tabs no-print">
+<button class="on" onclick="go(0,this)">تسجيل</button><button onclick="go(1,this)">السجل والبحث</button><button onclick="go(2,this)">الحصر الشهري</button><button onclick="go(3,this)">مقارنة الشهور</button><button onclick="go(4,this)">نسخ احتياطي</button>
+</div>
+<div class="page on"><div class="card form">
+<label>تاريخ العملية</label><input type="date" id="d">
+<label>اسم العميل</label><input id="n" placeholder="اسم العميل">
+<label>رقم الجوال</label><input id="p" placeholder="05xxxxxxxx">
+<label>كود العميل</label><input id="c" placeholder="SP9-1001">
+<label>عدد فريم الشبك</label><input type="number" id="q1" value="0" oninput="calc()">
+<label>سعر فريم الشبك (ر.س)</label><input type="number" id="s1" value="0" oninput="calc()">
+<label>عدد البلاك أوت</label><input type="number" id="q2" value="0" oninput="calc()">
+<label>سعر البلاك أوت (ر.س)</label><input type="number" id="s2" value="0" oninput="calc()">
+<label>الدفعة الأولى (ر.س)</label><input type="number" id="paid" value="0" oninput="calc()">
+<div class="box" id="calcBox"></div>
+<button class="main" onclick="save()">💾 حفظ البيانات</button>
+</div>
+<div class="card"><b>اليوم:</b> <span id="todayInfo"></span><br><b>هذا الشهر:</b> <span id="monthInfo"></span><br><b>المتبقي عند العملاء:</b> <span id="remInfo"></span></div></div>
+<div class="page"><div class="card"><label>ابحث بالاسم أو الكود أو الجوال</label><input id="q" oninput="show()" placeholder="ابحث هنا..."><div style="overflow:auto"><table><thead><tr><th>الكود</th><th>العميل</th><th>التاريخ</th><th>الإجمالي</th><th>المدفوع</th><th>المتبقي</th><th>الحالة</th><th></th></tr></thead><tbody id="tb"></tbody></table></div></div></div>
+<div class="page"><div class="card">
+<div style="text-align:center"><b style="font-size:28px;color:#78350f">TC24</b><br><b style="color:#d97706">قسم SP9 للفريمات</b></div>
+<label>اختار الشهر</label><select id="mon" onchange="monthly()"></select>
+<div style="overflow:auto"><table><thead><tr><th>الكود</th><th>التاريخ</th><th>العميل</th><th>الجوال</th><th>شبك</th><th>بلاك أوت</th><th>المبلغ</th><th>المدفوع</th><th>المتبقي</th></tr></thead><tbody id="mtb"></tbody></table></div>
+<div class="box" id="mtot"></div>
+<div style="margin-top:40px;border-top:2px solid #78350f;padding-top:12px;display:flex;justify-content:space-between;font-weight:900;color:#78350f"><span>مشرف القسم / مهندس عمر طه</span><span>SP9</span></div>
+<button class="main no-print" onclick="window.print()">🖨️ طباعة التقرير</button>
+</div>
+<div class="card"><b>📊 مبيعات كل شهر</b><div id="chart"></div></div></div>
+<div class="page"><div class="card"><b>📊 مقارنة المبيعات بين الشهور</b><div id="cmp"></div><div style="overflow:auto"><table><thead><tr><th>الشهر</th><th>العملاء</th><th>الإجمالي</th><th>المدفوع</th><th>المتبقي</th></tr></thead><tbody id="ctb"></tbody></table></div></div></div>
+<div class="page"><div class="card"><b>النسخ الاحتياطي و Excel</b><p class="small">البيانات بتتحفظ على نفس الجهاز تلقائياً.</p>
+<button class="main" style="background:#0284c7" onclick="excel()">📗 تصدير Excel</button>
+<button class="main" style="background:#059669" onclick="backup()">⬇️ تصدير نسخة احتياطية</button>
+<label>استعادة نسخة</label><input type="file" accept=".json" onchange="restore(event)"></div></div>
+<script>
+let data=JSON.parse(localStorage.getItem('tc24sp9')||'[]');
+document.getElementById('d').valueAsDate=new Date();
+function calc(){let t=(+q1.value)*(+s1.value)+(+q2.value)*(+s2.value);let r=t-(+paid.value);if(r<0)r=0;
+calcBox.innerHTML='الإجمالي: '+t.toLocaleString()+' ر.س &nbsp; | &nbsp; المتبقي: '+r.toLocaleString()+' ر.س';return{t,r}}
+function save(){let x=calc();if(x.t<=0){alert('دخل عدد وسعر واحد على الأقل');return}
+if(!n.value||!c.value){alert('اكتب اسم العميل والكود');return}
+data.unshift({d:d.value,n:n.value,p:p.value,c:c.value,q1:q1.value,s1:s1.value,q2:q2.value,s2:s2.value,total:x.t,paid:+paid.value,rem:x.r});
+localStorage.setItem('tc24sp9',JSON.stringify(data));alert('تم الحفظ ✅');n.value='';p.value='';c.value='';q1.value=0;s1.value=0;q2.value=0;s2.value=0;paid.value=0;calc();show();monthly()}
+function go(i,b){document.querySelectorAll('.page').forEach(e=>e.classList.remove('on'));document.querySelectorAll('.tabs button').forEach(e=>e.classList.remove('on'));document.querySelectorAll('.page')[i].classList.add('on');b.classList.add('on');show();monthly()}
+function show(){let f=q.value.toLowerCase();let today=new Date().toISOString().slice(0,10);let mon=today.slice(0,7);
+let dc=0,dm=0,mc=0,mm=0,rem=0;data.forEach(s=>{rem+=+s.rem;if(s.d===today){dc++;dm+=+s.paid}if(s.d&&s.d.startsWith(mon)){mc++;mm+=+s.paid}});
+todayInfo.innerText=dc+' عميل - '+dm.toLocaleString()+' ر.س';monthInfo.innerText=mc+' عميل - '+mm.toLocaleString()+' ر.س';remInfo.innerText=rem.toLocaleString()+' ر.س';
+tb.innerHTML='';data.filter(s=>(s.n+s.c+s.p).toLowerCase().includes(f)).forEach((s,i)=>{tb.innerHTML+='<tr><td><b>'+s.c+'</b></td><td>'+s.n+'<br><small>'+s.p+'</small></td><td>'+s.d+'</td><td>'+s.total.toLocaleString()+'</td><td>'+s.paid.toLocaleString()+'</td><td>'+s.rem.toLocaleString()+'</td><td>'+(s.rem<=0?'مكتمل ✅':'متبقي دفعات')+'</td><td><button class="del" onclick="del('+data.indexOf(s)+')">حذف</button></td></tr>'})}
+function del(i){if(confirm('متأكد من الحذف؟')){data.splice(i,1);localStorage.setItem('tc24sp9',JSON.stringify(data));show();monthly()}}
+function months(){let m={};data.forEach(s=>{if(!s.d)return;let k=s.d.slice(0,7);m[k]=m[k]||{c:0,t:0,p:0,r:0};m[k].c++;m[k].t+=+s.total;m[k].p+=+s.paid;m[k].r+=+s.rem});return m}
+function monthly(){let m=months();let keys=Object.keys(m).sort().reverse();let sel=document.getElementById('mon');
+if(sel.options.length!==keys.length){sel.innerHTML=keys.map(k=>'<option>'+k+'</option>').join('')||'<option value="">لا يوجد</option>'}
+let k=sel.value||keys[0];let tot=0,pd=0,rm=0;mtb.innerHTML='';
+data.filter(s=>s.d&&s.d.startsWith(k)).forEach(s=>{tot+=+s.total;pd+=+s.paid;rm+=+s.rem;mtb.innerHTML+='<tr><td><b>'+s.c+'</b></td><td>'+s.d+'</td><td>'+s.n+'</td><td>'+s.p+'</td><td>'+s.q1+'</td><td>'+s.q2+'</td><td>'+s.total.toLocaleString()+'</td><td>'+s.paid.toLocaleString()+'</td><td>'+s.rem.toLocaleString()+'</td></tr>'});
+mtot.innerHTML='إجمالي الشهر: '+tot.toLocaleString()+' ر.س | المدفوع: '+pd.toLocaleString()+' ر.س | المتبقي: '+rm.toLocaleString()+' ر.س';
+let mx=Math.max(1,...Object.values(m).map(v=>v.t));chart.innerHTML=Object.keys(m).sort().map(k=>'<div class="bar" style="width:'+Math.max(18,m[k].t/mx*100)+'%">'+k+' : '+m[k].t.toLocaleString()+' ر.س</div>').join('');
+ctb.innerHTML=Object.keys(m).sort().map(k=>'<tr><td><b>'+k+'</b></td><td>'+m[k].c+'</td><td>'+m[k].t.toLocaleString()+'</td><td>'+m[k].p.toLocaleString()+'</td><td>'+m[k].r.toLocaleString()+'</td></tr>').join('');
+cmp.innerHTML=Object.keys(m).sort().map(k=>'<div class="bar" style="width:'+Math.max(18,m[k].t/mx*100)+'%">'+k+' : '+m[k].t.toLocaleString()+' ر.س</div>').join('')}
+function excel(){if(!data.length){alert('لا يوجد بيانات');return}let csv='\ufeffالكود,العميل,الجوال,التاريخ,شبك,سعر الشبك,بلاك اوت,سعر البلاك,الاجمالي,المدفوع,المتبقي\n';
+data.forEach(s=>csv+='"'+s.c+'","'+s.n+'","'+s.p+'","'+s.d+'","'+s.q1+'","'+s.s1+'","'+s.q2+'","'+s.s2+'","'+s.total+'","'+s.paid+'","'+s.rem+'"\n');
+let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='SP9.csv';a.click()}
+function backup(){let a=document.createElement('a');a.href='data:text/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(data));a.download='TC24-SP9.json';a.click()}
+function restore(e){let r=new FileReader();r.onload=()=>{try{data=JSON.parse(r.result);localStorage.setItem('tc24sp9',JSON.stringify(data));show();monthly();alert('تمت الاستعادة ✅')}catch(_){alert('ملف غير صالح')}};r.readAsText(e.target.files[0])}
+calc();show();monthly();
+</script></body></html>
