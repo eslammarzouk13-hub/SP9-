@@ -44,4 +44,861 @@
       background: linear-gradient(90deg, rgba(245, 158, 11, 0.15), transparent);
       border-right: 4px solid var(--accent-amber);
       padding: 12px 18px;
-      border-radius
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: #fcd34d;
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .stat-box {
+      background: var(--card-glass);
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 18px;
+      border-radius: 14px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .stat-box.amber { border-top: 4px solid var(--accent-amber); }
+    .stat-box.emerald { border-top: 4px solid var(--accent-emerald); }
+    .stat-box.cyan { border-top: 4px solid var(--accent-cyan); }
+    .stat-box.purple { border-top: 4px solid var(--accent-purple); }
+    .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-bottom: 6px; }
+    .stat-number { font-size: 1.4rem; font-weight: 800; color: #fff; }
+
+    /* التبويبات الحديثة */
+    .nav-pills {
+      display: flex;
+      gap: 8px;
+      background: rgba(31, 41, 55, 0.6);
+      padding: 8px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .pill-btn {
+      flex: 1;
+      padding: 12px 16px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    .pill-btn.active {
+      background: var(--accent-amber);
+      color: #0b0f19;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    }
+
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    /* تخطيط الصفحة */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 2fr;
+      gap: 20px;
+    }
+    @media (max-width: 950px) { .dashboard-grid { grid-template-columns: 1fr; } }
+
+    .panel-card {
+      background: var(--card-glass);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 22px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+    }
+    .panel-card h3 {
+      font-size: 1.15rem;
+      color: var(--accent-amber);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding-bottom: 10px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+    .input-field-group { margin-bottom: 12px; }
+    .input-field-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; }
+    .custom-input {
+      width: 100%;
+      padding: 10px 12px;
+      background: rgba(11, 15, 25, 0.8);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .custom-input:focus { border-color: var(--accent-amber); box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15); }
+    .readonly-input { background: rgba(31, 41, 55, 0.5); color: #f59e0b; font-weight: bold; }
+
+    .main-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #0b0f19;
+      border: none;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+      transition: opacity 0.2s;
+    }
+    .main-btn:hover { opacity: 0.9; }
+    
+    .btn-secondary { background: rgba(255,255,255,0.05); color: var(--accent-amber); border: 1px solid rgba(245,158,11,0.3); padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-secondary:hover { background: rgba(245,158,11,0.1); }
+
+    /* الجداول والأزرار الصغيرة */
+    .table-wrapper { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    th, td { padding: 10px 12px; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 0.85rem; }
+    th { background: rgba(31, 41, 55, 0.8); color: var(--accent-amber); font-weight: 700; }
+
+    .action-group { display: flex; gap: 4px; }
+    .act-btn { border: none; padding: 5px 8px; border-radius: 6px; cursor: pointer; color: white; font-size: 0.8rem; font-weight: bold; }
+    .act-print { background: #059669; }
+    .act-wa { background: #16a34a; }
+    .act-edit { background: #d97706; }
+    .act-del { background: #dc2626; }
+
+    .status-badge { padding: 3px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: bold; }
+    .st-paid { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .st-part { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .st-unpaid { background: rgba(220, 38, 38, 0.2); color: #f87171; }
+
+    @media print {
+      body { background: white !important; color: black !important; padding: 0; }
+      .app-header, .welcome-bar, .nav-pills, .dashboard-grid > div:first-child, .no-print, .action-group { display: none !important; }
+      .panel-card { border: none; box-shadow: none; background: white !important; color: black !important; }
+      th, td { border: 1px solid #ccc; color: black !important; }
+      th { background: #eee !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- الترويسة والترحيب -->
+  <div class="welcome-bar">
+    <i class="fa-solid fa-hand"></i> أهلاً وسهلاً 🤚 | تحت إشراف: مهندس عمر
+  </div>
+
+  <div class="app-header">
+    <div class="app-title">
+      <i class="fa-solid fa-layer-group"></i> شركة تكنيكال 24 (TC24) - قسم الفريمات (SP9)
+    </div>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <button class="btn-secondary" onclick="exportToExcel()"><i class="fa-solid fa-file-excel"></i> تصدير Excel</button>
+      <label class="btn-secondary" style="margin:0; cursor:pointer;"><i class="fa-solid fa-file-import"></i> استيراد Excel/JSON <input type="file" accept=".json,.csv" style="display:none;" onchange="importData(event)"></label>
+      <button class="btn-secondary" onclick="window.print()"><i class="fa-solid fa-print"></i> طباعة الحصر</button>
+    </div>
+  </div>
+
+  <!-- شريط التبويبات الرئيسي -->
+  <div class="nav-pills">
+    <button class="pill-btn active" onclick="switchTab('tab-sales', this)"><i class="fa-solid fa-cash-register"></i> تسجيل المبيعات والعمليات</button>
+    <button class="pill-btn" onclick="switchTab('tab-search', this)"><i class="fa-solid fa-magnifying-glass"></i> البحث السريع المتقدم</button>
+    <button class="pill-btn" onclick="switchTab('tab-monthly', this)"><i class="fa-solid fa-calendar-days"></i> الحصر والطباعة المخصصة</button>
+    <button class="pill-btn" onclick="switchTab('tab-analytics', this)"><i class="fa-solid fa-chart-line"></i> التحليل والمقارنة المهارية</button>
+    <button class="pill-btn" onclick="switchTab('tab-settings', this)"><i class="fa-solid fa-users-gear"></i> إدارة الموظفين والإعدادات</button>
+  </div>
+
+  <!-- التبويب 1: المبيعات وتسجيل العمليات -->
+  <div id="tab-sales" class="tab-pane active">
+    <div class="stats-container">
+      <div class="stat-box amber">
+        <div class="stat-label">مبيعات اليوم (عدد)</div>
+        <div class="stat-number" id="stat-day-count">0</div>
+      </div>
+      <div class="stat-box emerald">
+        <div class="stat-label">تحصيل اليوم الإجمالي</div>
+        <div class="stat-number" id="stat-day-cash">0 ر.س</div>
+      </div>
+      <div class="stat-box cyan">
+        <div class="stat-label">تحصيل الشهر الحالي</div>
+        <div class="stat-number" id="stat-month-cash">0 ر.س</div>
+      </div>
+      <div class="stat-box purple">
+        <div class="stat-label">إجمالي العملاء المسجلين</div>
+        <div class="stat-number" id="stat-total-clients">0</div>
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- نموذج إضافة عمليّة -->
+      <div class="panel-card">
+        <h3 id="formTitle"><i class="fa-solid fa-user-plus"></i> تسجيل عملية فريمات جديدة</h3>
+        <form id="sp9Form">
+          <input type="hidden" id="editIdx" value="-1">
+          
+          <div class="form-row">
+            <div class="input-field-group">
+              <label>كود العميل</label>
+              <input type="text" id="cCode" class="custom-input" required placeholder="مثال: SP9-101">
+            </div>
+            <div class="input-field-group">
+              <label>تاريخ العملية</label>
+              <input type="date" id="cDate" class="custom-input" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-field-group">
+              <label>اسم العميل</label>
+              <input type="text" id="cName" class="custom-input" required placeholder="اسم العميل">
+            </div>
+            <div class="input-field-group">
+              <label>رقم الجوال</label>
+              <input type="tel" id="cPhone" class="custom-input" required placeholder="05xxxxxxxx">
+            </div>
+          </div>
+
+          <!-- فريم شبك -->
+          <div class="form-row">
+            <div class="input-field-group">
+              <label>عدد فريم شبك</label>
+              <input type="number" id="netQty" class="custom-input" min="0" value="0" oninput="calcTotals()">
+            </div>
+            <div class="input-field-group">
+              <label>سعر الفريم الشبك (ر.س)</label>
+              <input type="number" id="netPrice" class="custom-input" min="0" value="0" oninput="calcTotals()">
+            </div>
+          </div>
+
+          <!-- فريم بلاك اوت -->
+          <div class="form-row">
+            <div class="input-field-group">
+              <label>عدد فريم بلاك أوت</label>
+              <input type="number" id="boQty" class="custom-input" min="0" value="0" oninput="calcTotals()">
+            </div>
+            <div class="input-field-group">
+              <label>سعر الفريم البلاك أوت (ر.س)</label>
+              <input type="number" id="boPrice" class="custom-input" min="0" value="0" oninput="calcTotals()">
+            </div>
+          </div>
+
+          <!-- الحساب التلقائي والتفاصيل المالية -->
+          <div class="input-field-group">
+            <label>إجمالي المبلغ (Total)</label>
+            <input type="number" id="totalCost" class="custom-input readonly-input" readonly value="0">
+          </div>
+
+          <div class="form-row">
+            <div class="input-field-group">
+              <label>طريقة التحصيل</label>
+              <select id="payMethod" class="custom-input">
+                <option value="كاش / نقدي" style="background:#111827;">كاش / نقدي</option>
+                <option value="شبكة" style="background:#111827;">شبكة</option>
+                <option value="تحويل بنكي" style="background:#111827;">تحويل بنكي</option>
+              </select>
+            </div>
+            <div class="input-field-group">
+              <label>الدفعة الأولى</label>
+              <input type="number" id="firstPay" class="custom-input" min="0" value="0" oninput="calcTotals()">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-field-group">
+              <label>الدفعة الأخيرة</label>
+              <input type="number" id="lastPay" class="custom-input" min="0" value="0" oninput="calcTotals()">
+            </div>
+            <div class="input-field-group">
+              <label>المبلغ المتبقي</label>
+              <input type="number" id="remainPay" class="custom-input readonly-input" readonly value="0">
+            </div>
+          </div>
+
+          <button type="submit" class="main-btn" id="submitBtn"><i class="fa-solid fa-floppy-disk"></i> حفظ وترتيب العملية</button>
+        </form>
+      </div>
+
+      <!-- جدول العملاء والعمليات -->
+      <div class="panel-card">
+        <h3><i class="fa-solid fa-list-check"></i> سجل عملاء قسم الفريمات (SP9)</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>الكود</th>
+                <th>التاريخ</th>
+                <th>العميل والجوال</th>
+                <th>كميات الفريم</th>
+                <th>الإجمالي / المدفوع</th>
+                <th>المتبقي</th>
+                <th class="no-print">إجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="salesTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- التبويب 2: البحث المتقدم -->
+  <div id="tab-search" class="tab-pane">
+    <div class="panel-card">
+      <h3><i class="fa-solid fa-magnifying-glass"></i> البحث السريع المريح في السجلات</h3>
+      <div style="margin-bottom: 16px;">
+        <input type="text" id="searchInput" class="custom-input" placeholder="ابحث باسم العميل، كود العميل، أو رقم الجوال..." oninput="filterSearchTable()">
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>الكود</th>
+              <th>اسم العميل</th>
+              <th>رقم الجوال</th>
+              <th>التاريخ</th>
+              <th>فريم شبك</th>
+              <th>فريم بلاك أوت</th>
+              <th>إجمالي المبلغ</th>
+              <th>المتبقي</th>
+              <th class="no-print">مراسلة الواتساب</th>
+            </tr>
+          </thead>
+          <tbody id="searchTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- التبويب 3: الحصر والطباعة المخصصة -->
+  <div id="tab-monthly" class="tab-pane">
+    <div class="panel-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+        <h3><i class="fa-solid fa-print"></i> حصر وطباعة المبيعات بالفترة المخصصة</h3>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+          <select id="filterPeriod" class="custom-input" style="width:auto;" onchange="renderPeriodReport()">
+            <option value="week" style="background:#111827;">أسبوع حالي</option>
+            <option value="month1" selected style="background:#111827;">شهر واحد</option>
+            <option value="month2" style="background:#111827;">شهرين (2 أشهر)</option>
+            <option value="month3" style="background:#111827;">ثلاثة أشهر (3 أشهر)</option>
+            <option value="all" style="background:#111827;">جميع البيانات المسجلة</option>
+          </select>
+          <button class="btn-secondary no-print" onclick="window.print()"><i class="fa-solid fa-print"></i> طباعة ملونة بالتحليل</button>
+        </div>
+      </div>
+
+      <div id="printArea">
+        <div style="text-align: center; margin-bottom: 20px; border-bottom: 2px solid var(--accent-amber); padding-bottom: 10px;">
+          <h2 style="color: var(--accent-amber);">شركة تكنيكال 24 (TC24) - قسم الفريمات (SP9)</h2>
+          <p style="color: var(--text-muted);">تقرير وحصر مبيعات العملاء وتعميدات الفريمات</p>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>كود العميل</th>
+                <th>التاريخ</th>
+                <th>اسم العميل</th>
+                <th>الجوال</th>
+                <th>شبك</th>
+                <th>بلاك أوت</th>
+                <th>طريقة الدفع</th>
+                <th>الإجمالي (Total)</th>
+                <th>المدفوع</th>
+                <th>المتبقي</th>
+              </tr>
+            </thead>
+            <tbody id="periodTableBody"></tbody>
+          </table>
+        </div>
+
+        <div style="margin-top: 20px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; font-weight: bold; color: var(--accent-amber); font-size: 1.1rem; flex-wrap: wrap; gap: 10px;">
+          <div>إجمالي مبيعات الفترة: <span id="periodTotalSum">0</span> ر.س</div>
+          <div>إجمالي المحصل: <span id="periodPaidSum">0</span> ر.س</div>
+          <div>إجمالي المتبقي: <span id="periodRemainSum">0</span> ر.س</div>
+        </div>
+
+        <div style="margin-top: 40px; border-top: 2px solid var(--accent-amber); padding-top: 15px; display: flex; justify-content: space-between; font-weight: bold; color: var(--accent-amber);">
+          <div>تاريخ الطباعة: <span id="printDateStamp"></span></div>
+          <div>إشراف مهندس عمر</div>
+          <div>قسم الفريمات SP9</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- التبويب 4: التحليل والرسم البياني -->
+  <div id="tab-analytics" class="tab-pane">
+    <div class="panel-card">
+      <h3><i class="fa-solid fa-chart-column"></i> رسم بياني ومقارنة مبيعات الشهور</h3>
+      <div style="position: relative; height:350px; width:100%;">
+        <canvas id="salesChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- التبويب 5: إعدادات الموظفين والنسخ الاحتياطي -->
+  <div id="tab-settings" class="tab-pane">
+    <div class="dashboard-grid">
+      <div class="panel-card">
+        <h3><i class="fa-solid fa-user-gear"></i> إضافة وإدارة الموظفين</h3>
+        <form id="empForm">
+          <div class="input-field-group">
+            <label>اسم الموظف</label>
+            <input type="text" id="empName" class="custom-input" required placeholder="اسم الموظف">
+          </div>
+          <div class="input-field-group">
+            <label>المسمى الوظيفي / المسموح له</label>
+            <input type="text" id="empRole" class="custom-input" required placeholder="مثال: فني تركيبات / مبيعات">
+          </div>
+          <button type="submit" class="main-btn"><i class="fa-solid fa-plus"></i> إضافة موظف</button>
+        </form>
+      </div>
+
+      <div class="panel-card">
+        <h3><i class="fa-solid fa-users-viewfinder"></i> قائمة الموظفين المسجلين</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>اسم الموظف</th>
+                <th>المسمى الوظيفي</th>
+                <th>إجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="empTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // قاعدة البيانات المسجلة
+    let salesData = JSON.parse(localStorage.getItem('tc24_sp9_sales')) || [];
+    let empData = JSON.parse(localStorage.getItem('tc24_sp9_emps')) || [
+      { name: 'مهندس عمر', role: 'مشرف قسم الفريمات SP9' }
+    ];
+    let chartInstance = null;
+
+    document.getElementById('cDate').valueAsDate = new Date();
+    document.getElementById('printDateStamp').innerText = new Date().toLocaleDateString('ar-SA');
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+
+      if (tabId === 'tab-search') filterSearchTable();
+      if (tabId === 'tab-monthly') renderPeriodReport();
+      if (tabId === 'tab-analytics') renderAnalyticsChart();
+      if (tabId === 'tab-settings') renderEmps();
+    }
+
+    function calcTotals() {
+      const nQty = Number(document.getElementById('netQty').value) || 0;
+      const nPrice = Number(document.getElementById('netPrice').value) || 0;
+      const bQty = Number(document.getElementById('boQty').value) || 0;
+      const bPrice = Number(document.getElementById('boPrice').value) || 0;
+
+      const total = (nQty * nPrice) + (bQty * bPrice);
+      document.getElementById('totalCost').value = total;
+
+      const fPay = Number(document.getElementById('firstPay').value) || 0;
+      const lPay = Number(document.getElementById('lastPay').value) || 0;
+      const paidTotal = fPay + lPay;
+      const remain = total - paidTotal;
+
+      document.getElementById('remainPay').value = remain;
+    }
+
+    function updateHeaderStats() {
+      const today = new Date().toISOString().slice(0, 10);
+      const currMonth = today.slice(0, 7);
+
+      let dayCount = 0, dayCash = 0, monthCash = 0;
+
+      salesData.forEach(item => {
+        const itemPaid = Number(item.firstPay || 0) + Number(item.lastPay || 0);
+        if (item.date === today) {
+          dayCount++;
+          dayCash += itemPaid;
+        }
+        if (item.date && item.date.startsWith(currMonth)) {
+          monthCash += itemPaid;
+        }
+      });
+
+      document.getElementById('stat-day-count').innerText = dayCount;
+      document.getElementById('stat-day-cash').innerText = dayCash.toLocaleString() + ' ر.س';
+      document.getElementById('stat-month-cash').innerText = monthCash.toLocaleString() + ' ر.س';
+      document.getElementById('stat-total-clients').innerText = salesData.length;
+    }
+
+    function renderSalesTable() {
+      const tbody = document.getElementById('salesTableBody');
+      tbody.innerHTML = '';
+
+      salesData.forEach((item, index) => {
+        const paidTotal = Number(item.firstPay || 0) + Number(item.lastPay || 0);
+        const remain = Number(item.totalCost || 0) - paidTotal;
+        
+        let statusBadge = '<span class="status-badge st-paid">خالص</span>';
+        if (remain > 0 && paidTotal > 0) statusBadge = '<span class="status-badge st-part">متبقي دفعة</span>';
+        else if (remain > 0 && paidTotal === 0) statusBadge = '<span class="status-badge st-unpaid">غير مدفوع</span>';
+
+        tbody.innerHTML += `
+          <tr>
+            <td><strong style="color:var(--accent-amber);">${item.code}</strong></td>
+            <td>${item.date}</td>
+            <td><strong>${item.name}</strong><br><small style="color:var(--text-muted);">${item.phone}</small></td>
+            <td>شبك: ${item.netQty} | بلاك أوت: ${item.boQty}</td>
+            <td><strong>${Number(item.totalCost).toLocaleString()} ر.س</strong><br><small style="color:#34d399;">مدفوع: ${paidTotal.toLocaleString()}</small></td>
+            <td><strong style="color:${remain > 0 ? '#f87171' : '#34d399'};">${remain.toLocaleString()} ر.س</strong><br>${statusBadge}</td>
+            <td class="no-print">
+              <div class="action-group">
+                <button class="act-btn act-print" onclick="printSingleInvoice(${index})" title="طباعة فاتورة"><i class="fa-solid fa-print"></i></button>
+                <button class="act-btn act-wa" onclick="sendWhatsappMsg(${index})" title="واتساب"><i class="fa-brands fa-whatsapp"></i></button>
+                <button class="act-btn act-edit" onclick="editSaleItem(${index})" title="تعديل"><i class="fa-solid fa-pen"></i></button>
+                <button class="act-btn act-del" onclick="deleteSaleItem(${index})" title="حذف"><i class="fa-solid fa-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+
+      updateHeaderStats();
+      localStorage.setItem('tc24_sp9_sales', JSON.stringify(salesData));
+    }
+
+    document.getElementById('sp9Form').onsubmit = (e) => {
+      e.preventDefault();
+
+      const editIdx = parseInt(document.getElementById('editIdx').value);
+      const dataObj = {
+        code: document.getElementById('cCode').value,
+        date: document.getElementById('cDate').value,
+        name: document.getElementById('cName').value,
+        phone: document.getElementById('cPhone').value,
+        netQty: Number(document.getElementById('netQty').value) || 0,
+        netPrice: Number(document.getElementById('netPrice').value) || 0,
+        boQty: Number(document.getElementById('boQty').value) || 0,
+        boPrice: Number(document.getElementById('boPrice').value) || 0,
+        totalCost: Number(document.getElementById('totalCost').value) || 0,
+        payMethod: document.getElementById('payMethod').value,
+        firstPay: Number(document.getElementById('firstPay').value) || 0,
+        lastPay: Number(document.getElementById('lastPay').value) || 0
+      };
+
+      if (editIdx > -1) {
+        salesData[editIdx] = dataObj;
+        document.getElementById('editIdx').value = "-1";
+        document.getElementById('submitBtn').innerHTML = '<i class="fa-solid fa-floppy-disk"></i> حفظ وترتيب العملية';
+        document.getElementById('formTitle').innerHTML = '<i class="fa-solid fa-user-plus"></i> تسجيل عملية فريمات جديدة';
+      } else {
+        salesData.unshift(dataObj);
+      }
+
+      document.getElementById('sp9Form').reset();
+      document.getElementById('cDate').valueAsDate = new Date();
+      calcTotals();
+      renderSalesTable();
+    };
+
+    function editSaleItem(idx) {
+      const item = salesData[idx];
+      document.getElementById('cCode').value = item.code;
+      document.getElementById('cDate').value = item.date;
+      document.getElementById('cName').value = item.name;
+      document.getElementById('cPhone').value = item.phone;
+      document.getElementById('netQty').value = item.netQty;
+      document.getElementById('netPrice').value = item.netPrice;
+      document.getElementById('boQty').value = item.boQty;
+      document.getElementById('boPrice').value = item.boPrice;
+      document.getElementById('payMethod').value = item.payMethod;
+      document.getElementById('firstPay').value = item.firstPay;
+      document.getElementById('lastPay').value = item.lastPay;
+
+      calcTotals();
+      document.getElementById('editIdx').value = idx;
+      document.getElementById('submitBtn').innerHTML = '<i class="fa-solid fa-check-double"></i> تحديث بيانات العملية';
+      document.getElementById('formTitle').innerHTML = '<i class="fa-solid fa-user-pen"></i> تعديل عملية العميل';
+      switchTab('tab-sales', document.querySelectorAll('.pill-btn')[0]);
+    }
+
+    function deleteSaleItem(idx) {
+      if (confirm('هل أنت متأكد من حذف هذه العملية والعميل؟')) {
+        salesData.splice(idx, 1);
+        renderSalesTable();
+      }
+    }
+
+    function sendWhatsappMsg(idx) {
+      const item = salesData[idx];
+      const paidTotal = Number(item.firstPay || 0) + Number(item.lastPay || 0);
+      const remain = Number(item.totalCost || 0) - paidTotal;
+      const cleanPhone = item.phone.replace(/[^0-9]/g, '');
+
+      const msg = `السلام عليكم ورحمة الله وبركاته 👋%0Aمعك مهندس عمر من شركة تكنيكال 24 - قسم الفريمات (SP9).%0A%0Aإليك تفاصيل فاتورة تعميد الفريمات الخاصة بك:%0A- كود العميل: ${item.code}%0A- اسم العميل: ${item.name}%0A- عدد فريم شبك: ${item.netQty}%0A- عدد فريم بلاك أوت: ${item.boQty}%0A- إجمالي المبلغ (Total): ${item.totalCost} ريال سعودي%0A- المبلغ المدفوع: ${paidTotal} ريال%0A- المبلغ المتبقي: ${remain} ريال سعودي%0A%0Aنشكرك على تعاملك معنا!`;
+
+      window.open(`https://wa.me/${cleanPhone}?text=${msg}`, '_blank');
+    }
+
+    function filterSearchTable() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = salesData.filter(i => 
+        i.name.toLowerCase().includes(q) || i.code.toLowerCase().includes(q) || (i.phone && i.phone.includes(q))
+      );
+
+      const tbody = document.getElementById('searchTableBody');
+      tbody.innerHTML = '';
+      filtered.forEach((item, idx) => {
+        const paidTotal = Number(item.firstPay || 0) + Number(item.lastPay || 0);
+        const remain = Number(item.totalCost || 0) - paidTotal;
+
+        tbody.innerHTML += `
+          <tr>
+            <td><strong>${item.code}</strong></td>
+            <td>${item.name}</td>
+            <td>${item.phone}</td>
+            <td>${item.date}</td>
+            <td>${item.netQty}</td>
+            <td>${item.boQty}</td>
+            <td>${item.totalCost.toLocaleString()} ر.س</td>
+            <td><strong style="color:${remain > 0 ? '#f87171' : '#34d399'};">${remain.toLocaleString()} ر.س</strong></td>
+            <td>
+              <button class="act-btn act-wa" onclick="sendWhatsappMsg(${idx})"><i class="fa-brands fa-whatsapp"></i> واتساب</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function renderPeriodReport() {
+      const period = document.getElementById('filterPeriod').value;
+      const tbody = document.getElementById('periodTableBody');
+      tbody.innerHTML = '';
+
+      const now = new Date();
+      let totalSum = 0, paidSum = 0, remainSum = 0;
+
+      salesData.forEach(item => {
+        const itemDate = new Date(item.date);
+        let include = false;
+
+        if (period === 'week') {
+          const diffDays = (now - itemDate) / (1000 * 60 * 60 * 24);
+          if (diffDays <= 7 && diffDays >= 0) include = true;
+        } else if (period === 'month1') {
+          const diffDays = (now - itemDate) / (1000 * 60 * 60 * 24);
+          if (diffDays <= 30 && diffDays >= 0) include = true;
+        } else if (period === 'month2') {
+          const diffDays = (now - itemDate) / (1000 * 60 * 60 * 24);
+          if (diffDays <= 60 && diffDays >= 0) include = true;
+        } else if (period === 'month3') {
+          const diffDays = (now - itemDate) / (1000 * 60 * 60 * 24);
+          if (diffDays <= 90 && diffDays >= 0) include = true;
+        } else {
+          include = true;
+        }
+
+        if (include) {
+          const paidTotal = Number(item.firstPay || 0) + Number(item.lastPay || 0);
+          const remain = Number(item.totalCost || 0) - paidTotal;
+
+          totalSum += Number(item.totalCost || 0);
+          paidSum += paidTotal;
+          remainSum += remain;
+
+          tbody.innerHTML += `
+            <tr>
+              <td><strong>${item.code}</strong></td>
+              <td>${item.date}</td>
+              <td>${item.name}</td>
+              <td>${item.phone}</td>
+              <td>${item.netQty}</td>
+              <td>${item.boQty}</td>
+              <td>${item.payMethod}</td>
+              <td><strong>${Number(item.totalCost).toLocaleString()}</strong></td>
+              <td>${paidTotal.toLocaleString()}</td>
+              <td>${remain.toLocaleString()}</td>
+            </tr>
+          `;
+        }
+      });
+
+      document.getElementById('periodTotalSum').innerText = totalSum.toLocaleString();
+      document.getElementById('periodPaidSum').innerText = paidSum.toLocaleString();
+      document.getElementById('periodRemainSum').innerText = remainSum.toLocaleString();
+    }
+
+    function renderAnalyticsChart() {
+      const ctx = document.getElementById('salesChart').getContext('2d');
+      const monthlyData = {};
+
+      salesData.forEach(item => {
+        if (item.date) {
+          const m = item.date.slice(0, 7);
+          monthlyData[m] = (monthlyData[m] || 0) + Number(item.totalCost || 0);
+        }
+      });
+
+      const labels = Object.keys(monthlyData).sort();
+      const values = labels.map(l => monthlyData[l]);
+
+      if (chartInstance) chartInstance.destroy();
+
+      chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'إجمالي المبيعات (ر.س)',
+            data: values,
+            backgroundColor: 'rgba(245, 158, 11, 0.6)',
+            borderColor: '#f59e0b',
+            borderWidth: 2,
+            borderRadius: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { labels: { color: '#f3f4f6' } }
+          },
+          scales: {
+            x: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+            y: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+          }
+        }
+      });
+    }
+
+    document.getElementById('empForm').onsubmit = (e) => {
+      e.preventDefault();
+      const name = document.getElementById('empName').value;
+      const role = document.getElementById('empRole').value;
+
+      empData.push({ name, role });
+      localStorage.setItem('tc24_sp9_emps', JSON.stringify(empData));
+      document.getElementById('empForm').reset();
+      renderEmps();
+    };
+
+    function renderEmps() {
+      const tbody = document.getElementById('empTableBody');
+      tbody.innerHTML = '';
+      empData.forEach((emp, index) => {
+        tbody.innerHTML += `
+          <tr>
+            <td><strong>${emp.name}</strong></td>
+            <td>${emp.role}</td>
+            <td><button class="act-btn act-del" onclick="deleteEmp(${index})"><i class="fa-solid fa-trash"></i> حذف</button></td>
+          </tr>
+        `;
+      });
+    }
+
+    function deleteEmp(idx) {
+      empData.splice(idx, 1);
+      localStorage.setItem('tc24_sp9_emps', JSON.stringify(empData));
+      renderEmps();
+    }
+
+    function exportToExcel() {
+      if (salesData.length === 0) { alert('لا توجد بيانات للتصدير!'); return; }
+      let csv = '\uFEFFكود العميل,التاريخ,اسم العميل,الجوال,فريم شبك,سعر الشبك,فريم بلاك اوت,سعر البلاك اوت,الإجمالي,طريقة الدفع,الدفعة الأولى,الدفعة الأخيرة,المتبقي\n';
+
+      salesData.forEach(item => {
+        const paidTotal = Number(item.firstPay || 0) + Number(item.lastPay || 0);
+        const remain = Number(item.totalCost || 0) - paidTotal;
+        csv += `"${item.code}","${item.date}","${item.name}","${item.phone}","${item.netQty}","${item.netPrice}","${item.boQty}","${item.boPrice}","${item.totalCost}","${item.payMethod}","${item.firstPay}","${item.lastPay}","${remain}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `TC24_SP9_Mabeat_${new Date().toISOString().slice(0,10)}.csv`;
+      link.click();
+    }
+
+    function importData(event) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        try {
+          const parsed = JSON.parse(reader.result);
+          if (Array.isArray(parsed)) {
+            salesData = parsed;
+            renderSalesTable();
+            alert('تم استيراد البيانات بنجاح!');
+          }
+        } catch (e) {
+          alert('الملف المرفق غير صالح، يرجى رفع ملف JSON صحيح.');
+        }
+      };
+      reader.readAsText(event.target.files[0]);
+    }
+
+    function printSingleInvoice(idx) {
+      const item = salesData[idx];
+      const paidTotal = Number(item.firstPay || 0) + Number(item.lastPay || 0);
+      const remain = Number(item.totalCost || 0) - paidTotal;
+
+      const html = `
+        <!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>فاتورة ${item.code}</title>
+        <style>body{font-family:Tahoma, sans-serif;padding:30px;background:#fff;direction:rtl;} .box{max-width:650px;margin:0 auto;border:2px solid #f59e0b;padding:25px;border-radius:12px;}
+        .h{text-align:center;border-bottom:2px solid #fef3c7;padding-bottom:10px;margin-bottom:20px;color:#b45309;}
+        .r{display:flex;justify-content:space-between;margin-bottom:10px;border-bottom:1px dashed #ddd;padding-bottom:6px;}
+        .tot{background:#fef3c7;padding:12px;text-align:center;font-size:1.2rem;font-weight:bold;color:#b45309;margin-top:20px;border-radius:8px;}
+        .sign{margin-top:40px;border-top:2px solid #b45309;padding-top:15px;display:flex;justify-content:space-between;font-weight:bold;color:#b45309;}</style></head>
+        <body><div class="box"><div class="h"><h2>شركة تكنيكال 24 (TC24)</h2><p>قسم الفريمات (SP9) - إيصال تعميد مبيعات</p></div>
+        <div class="r"><span>كود العميل:</span><strong>${item.code}</strong></div>
+        <div class="r"><span>تاريخ العملية:</span><strong>${item.date}</strong></div>
+        <div class="r"><span>اسم العميل:</span><strong>${item.name}</strong></div>
+        <div class="r"><span>رقم الجوال:</span><strong>${item.phone}</strong></div>
+        <div class="r"><span>عدد فريم شبك:</span><strong>${item.netQty} (بسعر ${item.netPrice} ر.س)</strong></div>
+        <div class="r"><span>عدد فريم بلاك أوت:</span><strong>${item.boQty} (بسعر ${item.boPrice} ر.س)</strong></div>
+        <div class="r"><span>طريقة التحصيل:</span><strong>${item.payMethod}</strong></div>
+        <div class="r"><span>الدفعة الأولى:</span><strong>${item.firstPay} ريال</strong></div>
+        <div class="r"><span>الدفعة الأخيرة:</span><strong>${item.lastPay} ريال</strong></div>
+        <div class="tot">إجمالي المبلغ (Total): ${item.totalCost.toLocaleString()} ريال سعودي | المتبقي: ${remain.toLocaleString()} ريال</div>
+        <div class="sign"><div>تاريخ الطباعة: ${new Date().toLocaleDateString('ar-SA')}</div><div>إشراف مهندس عمر</div><div>قسم الفريمات SP9</div></div></div></body></html>`;
+
+      const w = window.open('', '_blank', 'height=650,width=750');
+      if(w) { w.document.write(html); w.document.close(); w.focus(); setTimeout(()=>{w.print(); w.close();}, 300); }
+    }
+
+    renderSalesTable();
+  </script>
+</body>
+</html>
