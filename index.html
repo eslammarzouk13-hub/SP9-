@@ -33,7 +33,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{border-bottom:1px
 </style></head><body>
 <div class="no-print">
 <header><div class="logo">TC<span>24</span></div><p>قسم SP9 للفريمات</p><div style="color:#e7d6b8;font-size:13px;margin-top:6px">إشراف المهندس / عمر طه</div></header>
-<div class="welcome">أهلاً وسهلاً 🤚 &nbsp; سجل عميلك الجديد وخلي الحساب علينا</div>
+<div class="welcome">أهلاً وسهلاً
 <div class="tabs"><button class="on" onclick="go(0,this)">📝 تسجيل عميل</button><button onclick="go(1,this)">👥 العملاء</button><button onclick="go(2,this)">🗓️ الحصر والطباعة</button><button onclick="go(3,this)">📊 مقارنة الشهور</button></div>
 <div class="page on"><div class="card">
 <div class="row"><div><label>تاريخ العملية</label><input type="date" id="d"></div><div><label>كود العميل</label><input id="c" placeholder="SP9-1001"></div></div>
@@ -95,7 +95,7 @@ function buildPrint(title,rows,tot,pd){let tr=rows.map(s=>'<tr><td><b>'+s.c+'</b
 printArea.innerHTML='<div style="text-align:center"><h1>TC24</h1><h2>قسم SP9 للفريمات</h2><h3 style="font-size:22px">'+title+'</h3></div><table><thead><tr><th>الكود</th><th>اسم العميل</th><th>المبلغ الذي دفعه</th></tr></thead><tbody>'+tr+'</tbody></table><div style="background:#f7ecd7;padding:14px;border-radius:12px;margin-top:16px;font-weight:900;font-size:18px;text-align:center">الإجمالي الكلي للعملاء: '+tot.toLocaleString()+' ر.س &nbsp; | &nbsp; إجمالي المدفوع: '+pd.toLocaleString()+' ر.س</div><div class="foot"><span>إشراف المهندس / عمر طه</span><span>TC24 - SP9</span></div>'}
 function printDay(){let dv=day.value;let rows=data.filter(s=>s.d===dv&&s.st!=='cancel');buildPrint('تقرير يوم '+dv,rows,rows.reduce((a,s)=>a+ +s.total,0),rows.reduce((a,s)=>a+ +s.paid,0));window.print()}
 function printMonth(){let k=document.getElementById('mon').value;let rows=data.filter(s=>s.d&&s.d.startsWith(k)&&s.st!=='cancel');buildPrint('تقرير شهر '+k,rows,rows.reduce((a,s)=>a+ +s.total,0),rows.reduce((a,s)=>a+ +s.paid,0));window.print()}
-function excel(){if(!data.length){alert('لا يوجد بيانات');return}let csv='\ufeffالكود,الاسم,الجوال,التاريخ,الاجمالي,الدفعة الاولى,الدفعة الاخيرة,المدفوع,المتبقي,الحالة\n';
+function excel(){if(!data.length){alert('لا يوجد بيانات');return}let csv='\ufeffالكود,الاسم,الجوال,التاريخ,الاجمالي,الدفعة الاولى,الدفعة الاخيرة,المدفوع,المتبقي,الحالة\n';نتمني لك يوم سعيد
 data.forEach(s=>csv+='"'+s.c+'","'+s.n+'","'+s.p+'","'+s.d+'","'+s.total+'","'+s.paid1+'","'+s.paid2+'","'+s.paid+'","'+s.rem+'","'+s.st+'"\n');
 let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='SP9.csv';a.click()}
 calc2();show();monthly();
