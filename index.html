@@ -10,16 +10,16 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root {
-      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --card-border: rgba(255, 255, 255, 0.1);
-      --accent-gold: #f59e0b;
-      --accent-gold-hover: #d97706;
-      --accent-green: #10b981;
-      --accent-blue: #38bdf8;
-      --accent-purple: #a855f7;
-      --text-main: #f8fafc;
-      --text-sub: #94a3b8;
+      --bg-gradient: linear-gradient(135deg, #fdfbf7 0%, #f4ede2 100%);
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-border: rgba(180, 138, 104, 0.2);
+      --accent-gold: #8c6239;
+      --accent-gold-hover: #6e4c2b;
+      --accent-green: #2e7d32;
+      --accent-blue: #0277bd;
+      --accent-purple: #7b1fa2;
+      --text-main: #3e2723;
+      --text-sub: #795548;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
@@ -27,15 +27,15 @@
 
     /* الشريط الترحيبي العريض */
     .hero-banner {
-      background: rgba(245, 158, 11, 0.1);
-      border: 1px solid rgba(245, 158, 11, 0.3);
+      background: rgba(140, 98, 57, 0.1);
+      border: 1px solid rgba(140, 98, 57, 0.3);
       padding: 14px 20px;
       border-radius: 14px;
       margin-bottom: 20px;
       display: flex;
       align-items: center;
       gap: 12px;
-      color: #fbbf24;
+      color: #6e4c2b;
       font-weight: 700;
       font-size: 1.1rem;
       backdrop-filter: blur(10px);
@@ -51,17 +51,17 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 24px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      box-shadow: 0 15px 30px rgba(62, 39, 35, 0.08);
       backdrop-filter: blur(15px);
       flex-wrap: wrap;
       gap: 16px;
     }
     .brand-title { display: flex; align-items: center; gap: 14px; font-size: 1.5rem; font-weight: 800; color: var(--accent-gold); }
-    .brand-title i { background: rgba(245, 158, 11, 0.2); padding: 12px; border-radius: 14px; border: 1px solid rgba(245, 158, 11, 0.4); }
+    .brand-title i { background: rgba(140, 98, 57, 0.12); padding: 12px; border-radius: 14px; border: 1px solid rgba(140, 98, 57, 0.3); }
 
     .header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
     .btn-top {
-      background: rgba(255, 255, 255, 0.05);
+      background: #faf6f0;
       border: 1px solid var(--card-border);
       color: var(--accent-gold);
       padding: 10px 18px;
@@ -73,13 +73,13 @@
       gap: 8px;
       transition: all 0.3s;
     }
-    .btn-top:hover { background: rgba(245, 158, 11, 0.15); border-color: var(--accent-gold); }
+    .btn-top:hover { background: rgba(140, 98, 57, 0.15); border-color: var(--accent-gold); color: var(--accent-gold-hover); }
 
     /* التبويبات الفخمة */
     .tabs-nav {
       display: flex;
       gap: 10px;
-      background: rgba(15, 23, 42, 0.6);
+      background: rgba(238, 230, 218, 0.6);
       padding: 8px;
       border-radius: 16px;
       margin-bottom: 24px;
@@ -105,8 +105,8 @@
     }
     .tab-btn.active {
       background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-hover));
-      color: #0f172a;
-      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35);
+      color: #fff;
+      box-shadow: 0 6px 15px rgba(140, 98, 57, 0.3);
     }
 
     .tab-content { display: none; }
@@ -125,14 +125,14 @@
       padding: 20px;
       border-radius: 16px;
       border-right: 5px solid var(--accent-gold);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(62, 39, 35, 0.05);
       backdrop-filter: blur(10px);
     }
     .metric-card.green { border-right-color: var(--accent-green); }
     .metric-card.blue { border-right-color: var(--accent-blue); }
     .metric-card.purple { border-right-color: var(--accent-purple); }
     .metric-title { font-size: 0.85rem; color: var(--text-sub); font-weight: 600; margin-bottom: 8px; }
-    .metric-val { font-size: 1.6rem; font-weight: 800; color: #fff; }
+    .metric-val { font-size: 1.6rem; font-weight: 800; color: var(--text-main); }
 
     /* التخطيط العام */
     .layout-split {
@@ -148,7 +148,7 @@
       border-radius: 20px;
       padding: 24px;
       backdrop-filter: blur(15px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 25px rgba(62, 39, 35, 0.06);
       margin-bottom: 24px;
     }
     .glass-card h3 {
@@ -167,26 +167,26 @@
     @media (max-width: 600px) { .form-grid-2 { grid-template-columns: 1fr; } }
 
     .field-box { margin-bottom: 14px; }
-    .field-box label { display: block; font-size: 0.85rem; font-weight: 700; color: #e2e8f0; margin-bottom: 6px; }
+    .field-box label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-sub); margin-bottom: 6px; }
     .ui-input {
       width: 100%;
       padding: 12px 14px;
-      background: rgba(15, 23, 42, 0.7);
+      background: #faf6f0;
       border: 1px solid var(--card-border);
-      color: #fff;
+      color: var(--text-main);
       border-radius: 12px;
       font-size: 0.95rem;
       outline: none;
       transition: all 0.2s;
     }
-    .ui-input:focus { border-color: var(--accent-gold); box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2); }
-    .ui-input.readonly { background: rgba(15, 23, 42, 0.9); color: var(--accent-gold); font-weight: 800; }
+    .ui-input:focus { border-color: var(--accent-gold); box-shadow: 0 0 0 3px rgba(140, 98, 57, 0.15); background: #fff; }
+    .ui-input.readonly { background: #f0eae1; color: var(--accent-gold); font-weight: 800; }
 
     .btn-submit {
       width: 100%;
       padding: 14px;
       background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-hover));
-      color: #0f172a;
+      color: #fff;
       border: none;
       border-radius: 12px;
       font-weight: 800;
@@ -205,19 +205,19 @@
     .table-container { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; margin-top: 10px; }
     th, td { padding: 14px 12px; text-align: right; border-bottom: 1px solid var(--card-border); font-size: 0.9rem; }
-    th { background: rgba(15, 23, 42, 0.8); color: var(--accent-gold); font-weight: 800; }
+    th { background: #f4ede2; color: var(--accent-gold); font-weight: 800; }
 
     .btn-group { display: flex; gap: 6px; }
     .btn-act { border: none; padding: 6px 10px; border-radius: 8px; cursor: pointer; color: white; font-size: 0.85rem; font-weight: bold; }
     .btn-act.print { background: var(--accent-green); }
-    .btn-act.wa { background: #25d366; }
+    .btn-act.wa { background: #2e7d32; }
     .btn-act.edit { background: var(--accent-gold-hover); }
-    .btn-act.del { background: #ef4444; }
+    .btn-act.del { background: #c62828; }
 
     .badge-status { padding: 4px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: bold; }
-    .st-ok { background: rgba(16, 185, 129, 0.2); color: #34d399; }
-    .st-part { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-    .st-zero { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+    .st-ok { background: rgba(46, 125, 50, 0.15); color: #2e7d32; }
+    .st-part { background: rgba(140, 98, 57, 0.15); color: #8c6239; }
+    .st-zero { background: rgba(198, 40, 40, 0.15); color: #c62828; }
 
     @media print {
       body { background: white !important; color: black !important; padding: 0; }
@@ -341,9 +341,9 @@
             <div class="field-box">
               <label>طريقة التحصيل</label>
               <select id="payMethod" class="ui-input">
-                <option value="كاش / نقدي" style="background:#0f172a;">كاش / نقدي</option>
-                <option value="شبكة" style="background:#0f172a;">شبكة</option>
-                <option value="تحويل بنكي" style="background:#0f172a;">تحويل بنكي</option>
+                <option value="كاش / نقدي">كاش / نقدي</option>
+                <option value="شبكة">شبكة</option>
+                <option value="تحويل بنكي">تحويل بنكي</option>
               </select>
             </div>
             <div class="field-box">
@@ -425,11 +425,11 @@
         <h3><i class="fa-solid fa-print"></i> حصر المبيعات والطباعة المخصصة</h3>
         <div style="display: flex; gap: 10px; align-items: center;">
           <select id="filterPeriod" class="ui-input" style="width:auto;" onchange="renderPeriodReport()">
-            <option value="week" style="background:#0f172a;">أسبوع حالي</option>
-            <option value="month1" selected style="background:#0f172a;">شهر واحد</option>
-            <option value="month2" style="background:#0f172a;">شهرين (2 أشهر)</option>
-            <option value="month3" style="background:#0f172a;">ثلاثة أشهر (3 أشهر)</option>
-            <option value="all" style="background:#0f172a;">جميع البيانات</option>
+            <option value="week">أسبوع حالي</option>
+            <option value="month1" selected>شهر واحد</option>
+            <option value="month2">شهرين (2 أشهر)</option>
+            <option value="month3">ثلاثة أشهر (3 أشهر)</option>
+            <option value="all">جميع البيانات</option>
           </select>
           <button class="btn-top no-print" onclick="window.print()"><i class="fa-solid fa-print"></i> طباعة ملونة</button>
         </div>
@@ -455,7 +455,7 @@
         </table>
       </div>
 
-      <div style="margin-top: 24px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); padding: 18px; border-radius: 14px; display: flex; justify-content: space-between; font-weight: bold; color: var(--accent-gold); font-size: 1.1rem; flex-wrap: wrap; gap: 12px;">
+      <div style="margin-top: 24px; background: rgba(140, 98, 57, 0.08); border: 1px solid rgba(140, 98, 57, 0.25); padding: 18px; border-radius: 14px; display: flex; justify-content: space-between; font-weight: bold; color: var(--accent-gold); font-size: 1.1rem; flex-wrap: wrap; gap: 12px;">
         <div>إجمالي المبيعات: <span id="periodTotalSum">0</span> ر.س</div>
         <div>إجمالي المحصل: <span id="periodPaidSum">0</span> ر.س</div>
         <div>إجمالي المتبقي: <span id="periodRemainSum">0</span> ر.س</div>
@@ -587,8 +587,8 @@
             <td>${item.date}</td>
             <td><strong>${item.name}</strong><br><small style="color:var(--text-sub);">${item.phone}</small></td>
             <td>شبك: ${item.netQty} | بلاك أوت: ${item.boQty}</td>
-            <td><strong>${Number(item.totalCost).toLocaleString()} ر.س</strong><br><small style="color:#34d399;">مدفوع: ${paidTotal.toLocaleString()}</small></td>
-            <td><strong style="color:${remain > 0 ? '#f87171' : '#34d399'};">${remain.toLocaleString()} ر.س</strong><br>${statusBadge}</td>
+            <td><strong>${Number(item.totalCost).toLocaleString()} ر.س</strong><br><small style="color:var(--accent-green);">مدفوع: ${paidTotal.toLocaleString()}</small></td>
+            <td><strong style="color:${remain > 0 ? '#c62828' : 'var(--accent-green)'};">${remain.toLocaleString()} ر.س</strong><br>${statusBadge}</td>
             <td class="no-print">
               <div class="btn-group">
                 <button class="btn-act print" onclick="printSingleInvoice(${index})" title="طباعة"><i class="fa-solid fa-print"></i></button>
@@ -696,7 +696,7 @@
             <td>${item.netQty}</td>
             <td>${item.boQty}</td>
             <td>${item.totalCost.toLocaleString()} ر.س</td>
-            <td><strong style="color:${remain > 0 ? '#f87171' : '#34d399'};">${remain.toLocaleString()} ر.س</strong></td>
+            <td><strong style="color:${remain > 0 ? '#c62828' : 'var(--accent-green)'};">${remain.toLocaleString()} ر.س</strong></td>
             <td>
               <button class="btn-act wa" onclick="sendWhatsappMsg(${idx})"><i class="fa-brands fa-whatsapp"></i> واتساب</button>
             </td>
@@ -784,8 +784,8 @@
           datasets: [{
             label: 'إجمالي المبيعات (ر.س)',
             data: values,
-            backgroundColor: 'rgba(245, 158, 11, 0.6)',
-            borderColor: '#f59e0b',
+            backgroundColor: 'rgba(140, 98, 57, 0.7)',
+            borderColor: '#8c6239',
             borderWidth: 2,
             borderRadius: 8
           }]
@@ -793,10 +793,10 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: { legend: { labels: { color: '#f8fafc' } } },
+          plugins: { legend: { labels: { color: '#3e2723' } } },
           scales: {
-            x: { ticks: { color: '#94a3af' }, grid: { color: 'rgba(255,255,255,0.05)' } },
-            y: { ticks: { color: '#94a3af' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+            x: { ticks: { color: '#795548' }, grid: { color: 'rgba(140,98,57,0.08)' } },
+            y: { ticks: { color: '#795548' }, grid: { color: 'rgba(140,98,57,0.08)' } }
           }
         }
       });
@@ -874,11 +874,11 @@
 
       const html = `
         <!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>فاتورة ${item.code}</title>
-        <style>body{font-family:Tahoma, sans-serif;padding:30px;background:#fff;direction:rtl;} .box{max-width:650px;margin:0 auto;border:2px solid #f59e0b;padding:25px;border-radius:12px;}
-        .h{text-align:center;border-bottom:2px solid #fef3c7;padding-bottom:10px;margin-bottom:20px;color:#b45309;}
+        <style>body{font-family:Tahoma, sans-serif;padding:30px;background:#fff;direction:rtl;} .box{max-width:650px;margin:0 auto;border:2px solid #8c6239;padding:25px;border-radius:12px;}
+        .h{text-align:center;border-bottom:2px solid #f4ede2;padding-bottom:10px;margin-bottom:20px;color:#8c6239;}
         .r{display:flex;justify-content:space-between;margin-bottom:10px;border-bottom:1px dashed #ddd;padding-bottom:6px;}
-        .tot{background:#fef3c7;padding:12px;text-align:center;font-size:1.2rem;font-weight:bold;color:#b45309;margin-top:20px;border-radius:8px;}
-        .sign{margin-top:40px;border-top:2px solid #b45309;padding-top:15px;display:flex;justify-content:space-between;font-weight:bold;color:#b45309;}</style></head>
+        .tot{background:#f4ede2;padding:12px;text-align:center;font-size:1.2rem;font-weight:bold;color:#8c6239;margin-top:20px;border-radius:8px;}
+        .sign{margin-top:40px;border-top:2px solid #8c6239;padding-top:15px;display:flex;justify-content:space-between;font-weight:bold;color:#8c6239;}</style></head>
         <body><div class="box"><div class="h"><h2>شركة تكنيكال 24 (TC24)</h2><p>قسم الفريمات (SP9) - إيصال تعميد مبيعات</p></div>
         <div class="r"><span>كود العميل:</span><strong>${item.code}</strong></div>
         <div class="r"><span>تاريخ العملية:</span><strong>${item.date}</strong></div>
