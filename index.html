@@ -10,91 +10,96 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root {
-      --bg-gradient: linear-gradient(135deg, #fdfbf7 0%, #f4ede2 100%);
-      --card-bg: rgba(255, 255, 255, 0.85);
-      --card-border: rgba(180, 138, 104, 0.2);
-      --accent-gold: #8c6239;
-      --accent-gold-hover: #6e4c2b;
-      --accent-green: #2e7d32;
-      --accent-blue: #0277bd;
-      --accent-purple: #7b1fa2;
-      --text-main: #3e2723;
-      --text-sub: #795548;
+      --bg-gradient: linear-gradient(135deg, #fbf8f3 0%, #f0e6d6 100%);
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --card-border: rgba(160, 118, 84, 0.22);
+      --accent-gold: #7d5430;
+      --accent-gold-hover: #5d3e22;
+      --accent-green: #2563eb; /* تم تحديث لون الهوية الاحترافي */
+      --accent-blue: #0284c7;
+      --accent-purple: #7c3aed;
+      --text-main: #2d1e18;
+      --text-sub: #6b4c3b;
+      --shadow-soft: 0 20px 40px rgba(70, 40, 20, 0.07);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
-    body { background: var(--bg-gradient); color: var(--text-main); padding: 20px; min-height: 100vh; line-height: 1.5; }
+    body { background: var(--bg-gradient); color: var(--text-main); padding: 24px; min-height: 100vh; line-height: 1.6; }
 
-    /* الشريط الترحيبي العريض */
+    /* الشريط الترحيبي الاحترافي */
     .hero-banner {
-      background: rgba(140, 98, 57, 0.1);
-      border: 1px solid rgba(140, 98, 57, 0.3);
-      padding: 14px 20px;
-      border-radius: 14px;
-      margin-bottom: 20px;
+      background: linear-gradient(135deg, rgba(125, 84, 48, 0.08), rgba(125, 84, 48, 0.15));
+      border: 1px solid rgba(125, 84, 48, 0.25);
+      padding: 16px 22px;
+      border-radius: 16px;
+      margin-bottom: 24px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      color: #6e4c2b;
+      gap: 14px;
+      color: var(--accent-gold-hover);
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      box-shadow: 0 4px 15px rgba(125, 84, 48, 0.04);
       backdrop-filter: blur(10px);
     }
+    .hero-banner i { font-size: 1.3rem; color: var(--accent-gold); }
 
     /* الهيدر الفاخر */
     .main-header {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      padding: 20px 24px;
-      border-radius: 20px;
+      padding: 22px 28px;
+      border-radius: 22px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 24px;
-      box-shadow: 0 15px 30px rgba(62, 39, 35, 0.08);
-      backdrop-filter: blur(15px);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(20px);
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 18px;
     }
-    .brand-title { display: flex; align-items: center; gap: 14px; font-size: 1.5rem; font-weight: 800; color: var(--accent-gold); }
-    .brand-title i { background: rgba(140, 98, 57, 0.12); padding: 12px; border-radius: 14px; border: 1px solid rgba(140, 98, 57, 0.3); }
+    .brand-title { display: flex; align-items: center; gap: 16px; font-size: 1.6rem; font-weight: 800; color: var(--accent-gold); }
+    .brand-title i { background: rgba(125, 84, 48, 0.1); padding: 14px; border-radius: 16px; border: 1px solid rgba(125, 84, 48, 0.25); color: var(--accent-gold); }
 
-    .header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .header-actions { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn-top {
-      background: #faf6f0;
+      background: #fdfbf7;
       border: 1px solid var(--card-border);
       color: var(--accent-gold);
-      padding: 10px 18px;
-      border-radius: 12px;
+      padding: 11px 20px;
+      border-radius: 14px;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      transition: all 0.3s;
+      gap: 10px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     }
-    .btn-top:hover { background: rgba(140, 98, 57, 0.15); border-color: var(--accent-gold); color: var(--accent-gold-hover); }
+    .btn-top:hover { background: var(--accent-gold); color: #fff; border-color: var(--accent-gold); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(125, 84, 48, 0.2); }
 
-    /* التبويبات الفخمة */
+    /* التبويبات الاحترافية */
     .tabs-nav {
       display: flex;
       gap: 10px;
-      background: rgba(238, 230, 218, 0.6);
-      padding: 8px;
-      border-radius: 16px;
+      background: rgba(226, 213, 198, 0.5);
+      padding: 10px;
+      border-radius: 18px;
       margin-bottom: 24px;
       border: 1px solid var(--card-border);
       overflow-x: auto;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
     }
     .tab-btn {
       flex: 1;
-      padding: 14px 20px;
+      padding: 14px 22px;
       border: none;
       background: transparent;
       color: var(--text-sub);
       font-weight: 700;
       font-size: 0.95rem;
-      border-radius: 12px;
+      border-radius: 14px;
       cursor: pointer;
       transition: all 0.3s;
       display: flex;
@@ -103,128 +108,136 @@
       gap: 10px;
       white-space: nowrap;
     }
+    .tab-btn:hover { color: var(--accent-gold); background: rgba(255, 255, 255, 0.5); }
     .tab-btn.active {
       background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-hover));
       color: #fff;
-      box-shadow: 0 6px 15px rgba(140, 98, 57, 0.3);
+      box-shadow: 0 8px 20px rgba(125, 84, 48, 0.25);
     }
 
-    .tab-content { display: none; }
+    .tab-content { display: none; animation: fadeIn 0.4s ease-in-out; }
     .tab-content.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* العدادات الإحصائية */
+    /* العدادات الإحصائية الاحترافية */
     .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
       margin-bottom: 24px;
     }
     .metric-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      padding: 20px;
-      border-radius: 16px;
-      border-right: 5px solid var(--accent-gold);
-      box-shadow: 0 8px 20px rgba(62, 39, 35, 0.05);
+      padding: 22px;
+      border-radius: 18px;
+      border-right: 6px solid var(--accent-gold);
+      box-shadow: var(--shadow-soft);
       backdrop-filter: blur(10px);
+      transition: transform 0.3s;
     }
-    .metric-card.green { border-right-color: var(--accent-green); }
+    .metric-card:hover { transform: translateY(-3px); }
+    .metric-card.green { border-right-color: #059669; }
     .metric-card.blue { border-right-color: var(--accent-blue); }
     .metric-card.purple { border-right-color: var(--accent-purple); }
-    .metric-title { font-size: 0.85rem; color: var(--text-sub); font-weight: 600; margin-bottom: 8px; }
-    .metric-val { font-size: 1.6rem; font-weight: 800; color: var(--text-main); }
+    .metric-title { font-size: 0.85rem; color: var(--text-sub); font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .metric-val { font-size: 1.8rem; font-weight: 800; color: var(--text-main); }
 
-    /* التخطيط العام */
+    /* التخطيط العام للقسمين */
     .layout-split {
       display: grid;
       grid-template-columns: 1.1fr 1.9fr;
       gap: 24px;
     }
-    @media (max-width: 1000px) { .layout-split { grid-template-columns: 1fr; } }
+    @media (max-width: 1050px) { .layout-split { grid-template-columns: 1fr; } }
 
     .glass-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 24px;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 10px 25px rgba(62, 39, 35, 0.06);
+      border-radius: 22px;
+      padding: 26px;
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-soft);
       margin-bottom: 24px;
     }
     .glass-card h3 {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       color: var(--accent-gold);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      border-bottom: 1px solid var(--card-border);
-      padding-bottom: 12px;
+      gap: 12px;
+      border-bottom: 2px solid rgba(160, 118, 84, 0.12);
+      padding-bottom: 14px;
     }
 
-    /* مدخلات النموذج */
-    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    /* مدخلات النموذج الاحترافية */
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     @media (max-width: 600px) { .form-grid-2 { grid-template-columns: 1fr; } }
 
-    .field-box { margin-bottom: 14px; }
-    .field-box label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-sub); margin-bottom: 6px; }
+    .field-box { margin-bottom: 16px; }
+    .field-box label { display: block; font-size: 0.88rem; font-weight: 700; color: var(--text-sub); margin-bottom: 7px; }
     .ui-input {
       width: 100%;
-      padding: 12px 14px;
+      padding: 13px 16px;
       background: #faf6f0;
       border: 1px solid var(--card-border);
       color: var(--text-main);
-      border-radius: 12px;
-      font-size: 0.95rem;
+      border-radius: 14px;
+      font-size: 0.98rem;
       outline: none;
-      transition: all 0.2s;
+      transition: all 0.3s;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
     }
-    .ui-input:focus { border-color: var(--accent-gold); box-shadow: 0 0 0 3px rgba(140, 98, 57, 0.15); background: #fff; }
-    .ui-input.readonly { background: #f0eae1; color: var(--accent-gold); font-weight: 800; }
+    .ui-input:focus { border-color: var(--accent-gold); box-shadow: 0 0 0 4px rgba(125, 84, 48, 0.12), inset 0 2px 4px rgba(0,0,0,0.02); background: #fff; }
+    .ui-input.readonly { background: #f0e9df; color: var(--accent-gold); font-weight: 800; }
 
     .btn-submit {
       width: 100%;
-      padding: 14px;
+      padding: 15px;
       background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-hover));
       color: #fff;
       border: none;
-      border-radius: 12px;
+      border-radius: 14px;
       font-weight: 800;
-      font-size: 1rem;
+      font-size: 1.05rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
-      transition: transform 0.2s;
+      gap: 12px;
+      margin-top: 14px;
+      transition: all 0.3s;
+      box-shadow: 0 8px 20px rgba(125, 84, 48, 0.25);
     }
-    .btn-submit:hover { transform: translateY(-2px); }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(125, 84, 48, 0.35); }
 
-    /* الجداول والجداول المنسقة */
-    .table-container { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { padding: 14px 12px; text-align: right; border-bottom: 1px solid var(--card-border); font-size: 0.9rem; }
-    th { background: #f4ede2; color: var(--accent-gold); font-weight: 800; }
+    /* الجداول الاحترافية */
+    .table-container { overflow-x: auto; border-radius: 14px; border: 1px solid var(--card-border); }
+    table { width: 100%; border-collapse: collapse; background: #fff; }
+    th, td { padding: 15px 14px; text-align: right; border-bottom: 1px solid rgba(160, 118, 84, 0.1); font-size: 0.92rem; }
+    th { background: #f5eee6; color: var(--accent-gold); font-weight: 800; letter-spacing: 0.3px; }
+    tr:hover td { background: rgba(245, 238, 230, 0.4); }
 
-    .btn-group { display: flex; gap: 6px; }
-    .btn-act { border: none; padding: 6px 10px; border-radius: 8px; cursor: pointer; color: white; font-size: 0.85rem; font-weight: bold; }
-    .btn-act.print { background: var(--accent-green); }
-    .btn-act.wa { background: #2e7d32; }
-    .btn-act.edit { background: var(--accent-gold-hover); }
-    .btn-act.del { background: #c62828; }
+    .btn-group { display: flex; gap: 8px; }
+    .btn-act { border: none; padding: 8px 12px; border-radius: 10px; cursor: pointer; color: white; font-size: 0.88rem; font-weight: bold; transition: transform 0.2s, opacity 0.2s; display: inline-flex; align-items: center; justify-content: center; }
+    .btn-act:hover { transform: scale(1.05); opacity: 0.9; }
+    .btn-act.print { background: #059669; }
+    .btn-act.wa { background: #16a34a; }
+    .btn-act.edit { background: #d97706; }
+    .btn-act.del { background: #dc2626; }
 
-    .badge-status { padding: 4px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: bold; }
-    .st-ok { background: rgba(46, 125, 50, 0.15); color: #2e7d32; }
-    .st-part { background: rgba(140, 98, 57, 0.15); color: #8c6239; }
-    .st-zero { background: rgba(198, 40, 40, 0.15); color: #c62828; }
+    .badge-status { padding: 5px 12px; border-radius: 10px; font-size: 0.78rem; font-weight: 800; display: inline-block; }
+    .st-ok { background: rgba(5, 150, 105, 0.12); color: #059669; border: 1px solid rgba(5, 150, 105, 0.2); }
+    .st-part { background: rgba(217, 119, 6, 0.12); color: #d97706; border: 1px solid rgba(217, 119, 6, 0.2); }
+    .st-zero { background: rgba(220, 38, 38, 0.12); color: #dc2626; border: 1px solid rgba(220, 38, 38, 0.2); }
 
     @media print {
       body { background: white !important; color: black !important; padding: 0; }
       .main-header, .hero-banner, .tabs-nav, .layout-split > div:first-child, .no-print, .btn-group { display: none !important; }
-      .glass-card { border: none; box-shadow: none; background: white !important; color: black !important; }
+      .glass-card { border: none; box-shadow: none; background: white !important; color: black !important; padding: 0 !important; }
       th, td { border: 1px solid #ccc; color: black !important; }
-      th { background: #eee !important; }
+      th { background: #f2f2f2 !important; }
     }
   </style>
 </head>
@@ -232,7 +245,8 @@
 
   <!-- شريط الترحيب -->
   <div class="hero-banner">
-    <i class="fa-solid fa-hand-wave"></i> أهلاً وسهلاً بك ✋ | التوثيق والتعميد الفني تحت إشراف: مهندس عمر
+    <i class="fa-solid fa-wand-magic-sparkles"></i>
+    <div>أهلاً وسهلاً بك يا مهندس عمر ✋ | لوحة التحكم المتطورة لقسم الفريمات والتركيبات (SP9)</div>
   </div>
 
   <!-- الهيدر الرئيسى -->
@@ -455,7 +469,7 @@
         </table>
       </div>
 
-      <div style="margin-top: 24px; background: rgba(140, 98, 57, 0.08); border: 1px solid rgba(140, 98, 57, 0.25); padding: 18px; border-radius: 14px; display: flex; justify-content: space-between; font-weight: bold; color: var(--accent-gold); font-size: 1.1rem; flex-wrap: wrap; gap: 12px;">
+      <div style="margin-top: 24px; background: rgba(125, 84, 48, 0.08); border: 1px solid rgba(125, 84, 48, 0.25); padding: 18px; border-radius: 14px; display: flex; justify-content: space-between; font-weight: bold; color: var(--accent-gold); font-size: 1.1rem; flex-wrap: wrap; gap: 12px;">
         <div>إجمالي المبيعات: <span id="periodTotalSum">0</span> ر.س</div>
         <div>إجمالي المحصل: <span id="periodPaidSum">0</span> ر.س</div>
         <div>إجمالي المتبقي: <span id="periodRemainSum">0</span> ر.س</div>
@@ -587,8 +601,8 @@
             <td>${item.date}</td>
             <td><strong>${item.name}</strong><br><small style="color:var(--text-sub);">${item.phone}</small></td>
             <td>شبك: ${item.netQty} | بلاك أوت: ${item.boQty}</td>
-            <td><strong>${Number(item.totalCost).toLocaleString()} ر.س</strong><br><small style="color:var(--accent-green);">مدفوع: ${paidTotal.toLocaleString()}</small></td>
-            <td><strong style="color:${remain > 0 ? '#c62828' : 'var(--accent-green)'};">${remain.toLocaleString()} ر.س</strong><br>${statusBadge}</td>
+            <td><strong>${Number(item.totalCost).toLocaleString()} ر.س</strong><br><small style="color:#059669;">مدفوع: ${paidTotal.toLocaleString()}</small></td>
+            <td><strong style="color:${remain > 0 ? '#dc2626' : '#059669'};">${remain.toLocaleString()} ر.س</strong><br>${statusBadge}</td>
             <td class="no-print">
               <div class="btn-group">
                 <button class="btn-act print" onclick="printSingleInvoice(${index})" title="طباعة"><i class="fa-solid fa-print"></i></button>
@@ -696,7 +710,7 @@
             <td>${item.netQty}</td>
             <td>${item.boQty}</td>
             <td>${item.totalCost.toLocaleString()} ر.س</td>
-            <td><strong style="color:${remain > 0 ? '#c62828' : 'var(--accent-green)'};">${remain.toLocaleString()} ر.س</strong></td>
+            <td><strong style="color:${remain > 0 ? '#dc2626' : '#059669'};">${remain.toLocaleString()} ر.س</strong></td>
             <td>
               <button class="btn-act wa" onclick="sendWhatsappMsg(${idx})"><i class="fa-brands fa-whatsapp"></i> واتساب</button>
             </td>
@@ -784,19 +798,19 @@
           datasets: [{
             label: 'إجمالي المبيعات (ر.س)',
             data: values,
-            backgroundColor: 'rgba(140, 98, 57, 0.7)',
-            borderColor: '#8c6239',
+            backgroundColor: 'rgba(125, 84, 48, 0.75)',
+            borderColor: '#7d5430',
             borderWidth: 2,
-            borderRadius: 8
+            borderRadius: 10
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: { legend: { labels: { color: '#3e2723' } } },
+          plugins: { legend: { labels: { color: '#2d1e18', font: { weight: 'bold' } } } },
           scales: {
-            x: { ticks: { color: '#795548' }, grid: { color: 'rgba(140,98,57,0.08)' } },
-            y: { ticks: { color: '#795548' }, grid: { color: 'rgba(140,98,57,0.08)' } }
+            x: { ticks: { color: '#6b4c3b' }, grid: { color: 'rgba(125,84,48,0.06)' } },
+            y: { ticks: { color: '#6b4c3b' }, grid: { color: 'rgba(125,84,48,0.06)' } }
           }
         }
       });
@@ -874,11 +888,11 @@
 
       const html = `
         <!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>فاتورة ${item.code}</title>
-        <style>body{font-family:Tahoma, sans-serif;padding:30px;background:#fff;direction:rtl;} .box{max-width:650px;margin:0 auto;border:2px solid #8c6239;padding:25px;border-radius:12px;}
-        .h{text-align:center;border-bottom:2px solid #f4ede2;padding-bottom:10px;margin-bottom:20px;color:#8c6239;}
+        <style>body{font-family:Tahoma, sans-serif;padding:30px;background:#fff;direction:rtl;} .box{max-width:650px;margin:0 auto;border:2px solid #7d5430;padding:25px;border-radius:12px;}
+        .h{text-align:center;border-bottom:2px solid #f0e6d6;padding-bottom:10px;margin-bottom:20px;color:#7d5430;}
         .r{display:flex;justify-content:space-between;margin-bottom:10px;border-bottom:1px dashed #ddd;padding-bottom:6px;}
-        .tot{background:#f4ede2;padding:12px;text-align:center;font-size:1.2rem;font-weight:bold;color:#8c6239;margin-top:20px;border-radius:8px;}
-        .sign{margin-top:40px;border-top:2px solid #8c6239;padding-top:15px;display:flex;justify-content:space-between;font-weight:bold;color:#8c6239;}</style></head>
+        .tot{background:#f0e6d6;padding:12px;text-align:center;font-size:1.2rem;font-weight:bold;color:#7d5430;margin-top:20px;border-radius:8px;}
+        .sign{margin-top:40px;border-top:2px solid #7d5430;padding-top:15px;display:flex;justify-content:space-between;font-weight:bold;color:#7d5430;}</style></head>
         <body><div class="box"><div class="h"><h2>شركة تكنيكال 24 (TC24)</h2><p>قسم الفريمات (SP9) - إيصال تعميد مبيعات</p></div>
         <div class="r"><span>كود العميل:</span><strong>${item.code}</strong></div>
         <div class="r"><span>تاريخ العملية:</span><strong>${item.date}</strong></div>
