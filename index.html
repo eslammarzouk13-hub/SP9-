@@ -26,167 +26,42 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
     body { background: var(--bg-gradient); color: var(--text-main); padding: 24px; min-height: 100vh; line-height: 1.6; }
 
-    /* البنر البني الجديد */
-    .brown-banner {
-      background: linear-gradient(135deg, #6f4726 0%, #4b2d16 100%);
+    /* الشريط المتحرك الاحترافي */
+    .pro-ticker {
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-hover));
       color: #fff;
-      border-radius: 22px;
-      padding: 20px 26px;
-      margin-bottom: 24px;
-      box-shadow: 0 14px 30px rgba(75, 45, 22, 0.22);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 18px;
-      position: relative;
+      padding: 10px 0;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(125, 84, 48, 0.2);
       overflow: hidden;
-    }
-
-    .banner-top-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .banner-user-side {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      padding: 8px 14px;
-      border-radius: 14px;
-      font-weight: 700;
-      font-size: 0.98rem;
-      direction: ltr;
-    }
-
-    .verified-badge {
-      color: #38bdf8;
+      white-space: nowrap;
+      font-weight: 800;
       font-size: 1.05rem;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .pro-ticker marquee {
+      width: 100%;
     }
 
-    .online-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: #4ade80;
-      font-size: 0.88rem;
-      font-weight: 800;
-      background: rgba(22, 163, 74, 0.18);
-      border: 1px solid rgba(74, 222, 128, 0.35);
-      padding: 3px 10px;
-      border-radius: 999px;
-      direction: rtl;
-    }
-
-    .online-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #22c55e;
-      display: inline-block;
-    }
-
-    .banner-center-title {
-      flex: 1;
-      text-align: center;
-      font-size: 1.45rem;
-      font-weight: 900;
-      letter-spacing: 0.4px;
-      color: #fff8ee;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-      min-width: 240px;
-    }
-
-    .banner-spacer {
-      min-width: 170px;
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .banner-bottom-row {
+    /* الشريط الترحيبي الاحترافي */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(125, 84, 48, 0.08), rgba(125, 84, 48, 0.15));
+      border: 1px solid rgba(125, 84, 48, 0.25);
+      padding: 16px 22px;
+      border-radius: 16px;
+      margin-bottom: 24px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.16);
-      flex-wrap: wrap;
+      gap: 14px;
+      color: var(--accent-gold-hover);
+      font-weight: 700;
+      font-size: 1.05rem;
+      box-shadow: 0 4px 15px rgba(125, 84, 48, 0.04);
+      backdrop-filter: blur(10px);
     }
-
-    /* الجنب اليمين أسفل البنر: سيارة وداخلها لوجو الشركة فقط */
-    .banner-right-truck {
-      display: flex;
-      align-items: center;
-    }
-
-    .truck-logo-box {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      padding: 8px 14px;
-      border-radius: 14px;
-    }
-
-    .truck-logo-box svg {
-      width: 112px;
-      height: 54px;
-      display: block;
-    }
-
-    /* الجنب الثاني اليسار: ساعة رقمية 12 ساعة بالتوقيت الحاضر */
-    .banner-left-clock {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(0, 0, 0, 0.24);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      padding: 8px 16px;
-      border-radius: 14px;
-      direction: ltr;
-    }
-
-    .digital-clock-time {
-      font-size: 1.25rem;
-      font-weight: 900;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 1px;
-      color: #ffffff;
-    }
-
-    .digital-clock-period {
-      font-size: 0.85rem;
-      font-weight: 800;
-      color: #fde68a;
-      background: rgba(255, 255, 255, 0.12);
-      padding: 2px 8px;
-      border-radius: 8px;
-    }
-
-    @media (max-width: 768px) {
-      .banner-top-row {
-        flex-direction: column;
-        align-items: stretch;
-        text-align: center;
-      }
-      .banner-user-side, .banner-spacer {
-        justify-content: center;
-        min-width: auto;
-      }
-      .banner-center-title {
-        font-size: 1.2rem;
-      }
-      .banner-bottom-row {
-        justify-content: space-between;
-      }
-    }
+    .hero-banner i { font-size: 1.3rem; color: var(--accent-gold); }
 
     /* الهيدر الفاخر */
     .main-header {
@@ -378,7 +253,7 @@
 
     @media print {
       body { background: white !important; color: black !important; padding: 0; }
-      .main-header, .brown-banner, .tabs-nav, .layout-split > div:first-child, .no-print, .btn-group { display: none !important; }
+      .main-header, .hero-banner, .pro-ticker, .tabs-nav, .layout-split > div:first-child, .no-print, .btn-group { display: none !important; }
       .glass-card { border: none; box-shadow: none; background: white !important; color: black !important; padding: 0 !important; }
       th, td { border: 1px solid #ccc; color: black !important; }
       th { background: #f2f2f2 !important; }
@@ -387,57 +262,17 @@
 </head>
 <body>
 
-  <!-- البنر البني -->
-  <div class="brown-banner">
-    <div class="banner-top-row">
-      <!-- على جنب البنر البني: اسم مهندس عمر بالإنجليزي وعلامة صح التوثيق وجمبها متصل بالأخضر -->
-      <div class="banner-user-side">
-        <span>Eng. Omar</span>
-        <i class="fa-solid fa-circle-check verified-badge" title="موثق"></i>
-        <span class="online-status"><span class="online-dot"></span>متصل</span>
-      </div>
+  <!-- الشريط المتحرك الاحترافي الجديد -->
+  <div class="pro-ticker">
+    <marquee behavior="scroll" direction="right" scrollamount="5">
+      ✨ شركة تكنيكال 24 &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; الراحة والجودة عنواننا دائمًا ✨ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🚀 نرحب بكم في لوحة تحكم قسم الفريمات والتركيبات (SP9) تحت إشراف مهندس عمر 🚀
+    </marquee>
+  </div>
 
-      <!-- في منتصف البنر البني -->
-      <div class="banner-center-title">TECHNICAL_24_قسم SP9</div>
-
-      <div class="banner-spacer"></div>
-    </div>
-
-    <div class="banner-bottom-row">
-      <!-- الجنب اليمين أسفل البنر: سيارة وداخلها لوجو الشركة فقط -->
-      <div class="banner-right-truck" title="TECHNICAL-24">
-        <div class="truck-logo-box">
-          <svg viewBox="0 0 180 86" xmlns="http://www.w3.org/2000/svg" aria-label="شعار الشركة داخل السيارة">
-            <!-- خطوط السرعة -->
-            <line x1="6" y1="26" x2="26" y2="26" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-            <line x1="2" y1="38" x2="26" y2="38" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-            <line x1="8" y1="50" x2="26" y2="50" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-            <!-- جسم السيارة -->
-            <path d="M30 16 H124 V54 H30 Z" fill="#ffffff" rx="4"/>
-            <!-- كابينة السيارة -->
-            <path d="M124 26 H152 L166 40 V54 H124 Z" fill="#ffffff"/>
-            <!-- نافذة الكابينة -->
-            <path d="M130 31 H149 L159 41 H130 Z" fill="#5d3e22"/>
-            <!-- لوجو الشركة داخل جسم السيارة فقط -->
-            <circle cx="54" cy="35" r="10" fill="none" stroke="#5d3e22" stroke-width="2.5"/>
-            <path d="M50 35 L53 38 L59 32" fill="none" stroke="#5d3e22" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <text x="95" y="39" text-anchor="middle" fill="#5d3e22" font-size="9.5" font-weight="900" font-family="Arial, sans-serif">TC24</text>
-            <!-- العجلات -->
-            <circle cx="56" cy="58" r="11" fill="#2d1e18" stroke="#ffffff" stroke-width="3"/>
-            <circle cx="56" cy="58" r="4" fill="#ffffff"/>
-            <circle cx="144" cy="58" r="11" fill="#2d1e18" stroke="#ffffff" stroke-width="3"/>
-            <circle cx="144" cy="58" r="4" fill="#ffffff"/>
-          </svg>
-        </div>
-      </div>
-
-      <!-- الجنب الثاني اليسار: ساعة رقمية 12 ساعة بالتوقيت الحاضر -->
-      <div class="banner-left-clock">
-        <i class="fa-regular fa-clock" style="color:#fde68a;"></i>
-        <span class="digital-clock-time" id="liveDigitalClock">12:00:00</span>
-        <span class="digital-clock-period" id="liveClockPeriod">AM</span>
-      </div>
-    </div>
+  <!-- شريط الترحيب -->
+  <div class="hero-banner">
+    <i class="fa-solid fa-wand-magic-sparkles"></i>
+    <div>أهلاً وسهلاً بك يا مهندس عمر ✋ | لوحة التحكم المتطورة لقسم الفريمات والتركيبات (SP9)</div>
   </div>
 
   <!-- الهيدر الرئيسى -->
@@ -445,7 +280,8 @@
     <div class="brand-title">
       <i class="fa-solid fa-shapes"></i>
       <div>
-        <div>قسم الفريمات والتركيبات (SP9)</div>
+        <div>شركة تكنيكال 24 (TC24)</div>
+        <div style="font-size: 0.85rem; color: var(--text-sub); font-weight: 600;">قسم الفريمات والتركيبات (SP9)</div>
       </div>
     </div>
     <div class="header-actions">
@@ -725,24 +561,6 @@
 
     document.getElementById('cDate').valueAsDate = new Date();
     document.getElementById('printDateStamp').innerText = new Date().toLocaleDateString('ar-SA');
-
-    function updateDigitalClock12() {
-      const now = new Date();
-      let hours24 = now.getHours();
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-      const period = hours24 >= 12 ? 'PM' : 'AM';
-      let hours12 = hours24 % 12;
-      hours12 = hours12 ? hours12 : 12;
-      const formattedHours = String(hours12).padStart(2, '0');
-
-      const timeEl = document.getElementById('liveDigitalClock');
-      const periodEl = document.getElementById('liveClockPeriod');
-      if (timeEl) timeEl.textContent = `${formattedHours}:${minutes}:${seconds}`;
-      if (periodEl) periodEl.textContent = period;
-    }
-    updateDigitalClock12();
-    setInterval(updateDigitalClock12, 1000);
 
     function switchTab(tabId, btn) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1101,7 +919,8 @@
         .r{display:flex;justify-content:space-between;margin-bottom:10px;border-bottom:1px dashed #ddd;padding-bottom:6px;}
         .tot{background:#f0e6d6;padding:12px;text-align:center;font-size:1.2rem;font-weight:bold;color:#7d5430;margin-top:20px;border-radius:8px;}
         .sign{margin-top:40px;border-top:2px solid #7d5430;padding-top:15px;display:flex;justify-content:space-between;font-weight:bold;color:#7d5430;}</style></head>
-        <body><div class="box"><div class="h"><h2>TECHNICAL_24_قسم SP9</h2><p>قسم الفريمات (SP9) - إيصال تعميد مبيعات</p></div>
+        <body><div class="box"><div class="h"><h2>شركة تكنيكال 24 (TC24)</h2><p>قسم الفريمات (SP9) - إيصال تعميد مبيعات</p></div>
+        .r` + /* بقية بيانات الفاتورة */ `
         <div class="r"><span>كود العميل:</span><strong>${item.code}</strong></div>
         <div class="r"><span>تاريخ العملية:</span><strong>${item.date}</strong></div>
         <div class="r"><span>اسم العميل:</span><strong>${item.name}</strong></div>
