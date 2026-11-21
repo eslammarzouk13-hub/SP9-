@@ -135,45 +135,51 @@
       border-top: 1px solid rgba(255, 255, 255, 0.16);
     }
 
-    /* الجنب اليمين أسفل البنر */
+    /* الجنب اليمين تحت: صورة اللوجو */
     .banner-right-slot {
       display: flex;
       align-items: center;
       justify-content: flex-start;
     }
 
-    /* المنتصف أسفل البنر: لوجو الشركة بغلاف أبيض وكتابة بنية */
+    .truck-logo-card {
+      background: #ffffff;
+      border: 2px solid #7d5430;
+      padding: 6px 12px;
+      border-radius: 14px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .truck-logo-card svg {
+      width: 118px;
+      height: 56px;
+      display: block;
+    }
+
+    /* في منتصف البنر تحت شوي: غلاف أبيض وكتابة لونها بني TECHINCAL_24قسمSP9 */
     .banner-center-logo {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      margin-top: 6px;
     }
 
-    .truck-white-wrapper {
+    .tech-white-badge {
       background: #ffffff;
       border: 2px solid #7d5430;
-      padding: 8px 16px;
-      border-radius: 16px;
+      padding: 8px 18px;
+      border-radius: 14px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .truck-white-wrapper svg {
-      width: 132px;
-      height: 66px;
-      display: block;
-    }
-
-    .truck-brown-caption {
       color: #5d3e22;
-      font-size: 0.78rem;
+      font-size: 1rem;
       font-weight: 900;
       letter-spacing: 0.4px;
-      line-height: 1.2;
+      text-align: center;
+      direction: ltr;
     }
 
     /* الجنب الثاني اليسار: ساعة رقمية 12 ساعة بالتوقيت الحاضر */
@@ -448,11 +454,9 @@
     </div>
 
     <div class="banner-bottom-row">
-      <div class="banner-right-slot"></div>
-
-      <!-- في المنتصف تحت في البنر البني: لوجو الشركة بغلاف أبيض وكتابة بنية -->
-      <div class="banner-center-logo" title="TECHNICAL-24">
-        <div class="truck-white-wrapper">
+      <!-- الجنب اليمين تحت: صورة اللوجو -->
+      <div class="banner-right-slot" title="TECHNICAL-24">
+        <div class="truck-logo-card">
           <svg viewBox="0 0 210 92" xmlns="http://www.w3.org/2000/svg" aria-label="TECHNICAL-24">
             <!-- خطوط السرعة -->
             <line x1="8" y1="28" x2="34" y2="28" stroke="#1d6fa5" stroke-width="5" stroke-linecap="round"/>
@@ -477,8 +481,12 @@
             <circle cx="168" cy="64" r="14" fill="#1d6fa5"/>
             <circle cx="168" cy="64" r="7" fill="#ffffff"/>
           </svg>
-          <div class="truck-brown-caption">TECHNICAL-24</div>
         </div>
+      </div>
+
+      <!-- في منتصف البنر تحت شوي: غلاف أبيض وكتابة لونها بني -->
+      <div class="banner-center-logo">
+        <div class="tech-white-badge">TECHINCAL_24قسمSP9</div>
       </div>
 
       <!-- الجنب الثاني اليسار: ساعة رقمية 12 ساعة بالتوقيت الحاضر -->
